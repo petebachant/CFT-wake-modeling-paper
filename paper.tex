@@ -13,6 +13,7 @@
 
 \documentclass[aip,graphicx]{revtex4-1}
 %\documentclass[aip,reprint]{revtex4-1}
+\usepackage[draft]{todonotes}
 
 \draft % marks overfull lines with a black rule on the right
 
@@ -35,7 +36,7 @@
 % The \affiliation command should follow the other information.
 
 \author{Peter Bachant}
-\email[]{pxL3@unh.edu}
+\email[]{pxl3@unh.edu}
 %\homepage[]{Your web page}
 %\thanks{}
 %\altaffiliation{}
@@ -66,7 +67,7 @@ several techniques.
 \pacs{}% insert suggested PACS numbers in braces on next line
 
 \maketitle %\maketitle must follow title, authors, abstract and \pacs
-
+\listoftodos
 
 \section{Introduction}
 
@@ -79,15 +80,34 @@ Araya et al. modeled the flow through a VAT array using leaky Rankine bodies
 
 \section{Model verification}
 
+
 \section{Model validation}
 
 Models were validated against several open datasets.
 
 
-% If you have acknowledgments, this puts in the proper section head.
-%\begin{acknowledgments}
-% Put your acknowledgments here.
-%\end{acknowledgments}
+\section{Results}
+
+\subsection{Performance prediction}
+
+Predictions for both the power and drag coefficients are shown in Figure~\ref{fig:perf_comp}
+
+\begin{figure}
+\caption{Power (a) and drag (b) coefficient predictions from experiments and
+each numerical model.}
+\label{fig:perf_comp}
+\end{figure}
+
+\todo[inline]{Add bar graph comparing various performance results for the RVAT.}
+
+
+
+
+
+\begin{acknowledgments}
+The authors acknowledge Vincent Neary and the Sandia National Laboratories Water
+Power Program for use of their Red Mesa high performance computing cluster.
+\end{acknowledgments}
 
 % Create the reference section using BibTeX:
 \bibliography{library}
