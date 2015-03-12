@@ -23,7 +23,7 @@
 % Multiple \preprint commands are allowed.
 %\preprint{}
 
-\title{Modeling vertical-axis cross-flow turbine wakes} %Title of paper
+\title{Modeling vertical-axis cross-flow turbine wakes}
 
 % repeat the \author .. \affiliation  etc. as needed
 % \email, \thanks, \homepage, \altaffiliation all apply to the current author.
@@ -39,14 +39,16 @@
 %\homepage[]{Your web page}
 %\thanks{}
 %\altaffiliation{}
-\affiliation{Center for Ocean Renewable Energy, University of New Hampshire, Durham, NH}
+\affiliation{Center for Ocean Renewable Energy, University of New Hampshire, 
+Durham, NH}
 
-\author{Martin Wosnik}
+\author{Martin Wosnik} 
 %\email[]{}
 %\homepage[]{Your web page}
 %\thanks{}
 %\altaffiliation{}
-\affiliation{Center for Ocean Renewable Energy, University of New Hampshire, Durham, NH}
+\affiliation{Center for Ocean Renewable Energy, University of New Hampshire,
+Durham, NH}
 
 % Collaboration name, if desired (requires use of superscriptaddress option in
 % \documentclass).
@@ -57,51 +59,30 @@
 \date{\today}
 
 \begin{abstract}
-% insert abstract here
+The wake of a vertical-axis cross-flow turbine (CFT) is modeled numerically via
+several techniques.
 \end{abstract}
 
 \pacs{}% insert suggested PACS numbers in braces on next line
 
 \maketitle %\maketitle must follow title, authors, abstract and \pacs
 
-% Body of paper goes here. Use proper sectioning commands. 
-% References should be done using the \cite, \ref, and \label commands
-\section{}
-%\label{}
-\subsection{}
-\subsubsection{}
 
-% If in two-column mode, this environment will change to single-column format so that long equations can be displayed. 
-% Use only when necessary.
-%\begin{widetext}
-%$$\mbox{put long equation here}$$
-%\end{widetext}
+\section{Introduction}
 
-% Figures should be put into the text as floats. 
-% Use the graphics or graphicx packages (distributed with LaTeX2e).
-% See the LaTeX Graphics Companion by Michel Goosens, Sebastian Rahtz, and Frank Mittelbach for examples. 
-%
-% Here is an example of the general form of a figure:
-% Fill in the caption in the braces of the \caption{} command. 
-% Put the label that you will use with \ref{} command in the braces of the \label{} command.
-%
-% \begin{figure}
-% \includegraphics{}%
-% \caption{\label{}}%
-% \end{figure}
+Araya et al. modeled the flow through a VAT array using leaky Rankine bodies
+\cite{Araya2014}.
 
-% Tables may be be put in the text as floats.
-% Here is an example of the general form of a table:
-% Fill in the caption in the braces of the \caption{} command. Put the label
-% that you will use with \ref{} command in the braces of the \label{} command.
-% Insert the column specifiers (l, r, c, d, etc.) in the empty braces of the
-% \begin{tabular}{} command.
-%
-% \begin{table}
-% \caption{\label{} }
-% \begin{tabular}{}
-% \end{tabular}
-% \end{table}
+
+\section{Numerical models}
+
+
+\section{Model verification}
+
+\section{Model validation}
+
+Models were validated against several open datasets.
+
 
 % If you have acknowledgments, this puts in the proper section head.
 %\begin{acknowledgments}
@@ -109,8 +90,6 @@
 %\end{acknowledgments}
 
 % Create the reference section using BibTeX:
-\bibliography{your-bib-file}
+\bibliography{library}
 
 \end{document}
-%
-% ****** End of file aiptemplate.tex ******
