@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This script makes the figures for the CFT wake modeling paper.
 """
