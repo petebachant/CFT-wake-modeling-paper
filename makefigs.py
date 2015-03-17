@@ -7,12 +7,12 @@ from __future__ import print_function, division
 import matplotlib.pyplot as plt
 import os
 
-cfd_sst_dir = ""
-cfd_sa_dir = ""
-cfd_sst_2d_dir = ""
-cfd_sd_2d_dir = ""
+cfd_sst_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14"
+cfd_sa_dir = "/media/pete/Data2/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14-sa"
+cfd_sst_2d_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-2d/kOmegaSST"
+cfd_sd_2d_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-2d/SpalartAllmaras"
 cfd_alm_dir = ""
-exp_dir = "C:/Users/Pete/Research/Experiments/RVAT Re dep"
+exp_dir = "/home/pete/Google Drive/Research/Experiments/RVAT Re dep"
 paper_dir = os.getcwd()
 
 save = True
