@@ -40,7 +40,7 @@ def plot_cfd_meancontquiv(case="kOmegaSST"):
     """Plots wake mean velocity contours/quivers from 3-D CFD case."""
     os.chdir(cfd_dirs[case])
     import processing as processing_cfd
-    processing_cfd.plotwake()
+    processing_cfd.plot_meancontquiv()
     os.chdir(paper_dir)
     if save:
          plt.savefig("figures/meancontquiv_" + case + savetype)
