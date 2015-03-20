@@ -89,6 +89,16 @@ Questions addressed:
 
 \section{Numerical models}
 
+The flow field was modeled using the Reynolds-averaged Navier--Stokes equations,
+employing two different turbulence models--Menter's $k$--$\omega$ SST
+\cite{Menter1994} and the Spalart--Allmaras one equation model
+\cite{Spalart1992}. The SST model was chosen due to its prominence in the
+literature for simulating separating flows, which we assumed to be present in
+the current problem in the form of dynamic stall. The Spalart--Allmaras model
+was shown by Ferreira et al. \cite{Ferreira2007} to match experimental particle
+image velocimetry (PIV) results for a CFT in dynamic stall, though this was a
+somewhat low Reynolds number case ($5 \times 10^4$).
+
 The RANS models employ a sliding mesh, where the turbine zone rotates at a mean
 tip speed ratio $\lambda=1.9$ with an unsteadiness as the blade passage
 frequency specified to mimic the experimental data.
