@@ -74,6 +74,10 @@ several techniques.
 Araya et al. modeled the flow through a VAT array using leaky Rankine bodies
 \cite{Araya2014}.
 
+In this study we set out to model the wake of the University of New Hampshire's
+Reference Vertical-Axis (cross-flow) Turbine (UNH-RVAT) using a
+Reynolds-averaged Navier--Stokes numerical model.
+
 Questions addressed:
 
 \begin{enumerate}
@@ -99,16 +103,32 @@ was shown by Ferreira et al. \cite{Ferreira2007} to match experimental particle
 image velocimetry (PIV) results for a CFT in dynamic stall, though this was a
 somewhat low Reynolds number case ($5 \times 10^4$).
 
+\subsection{Computational mesh}
+
 The RANS models employ a sliding mesh, where the turbine zone rotates at a mean
 tip speed ratio $\lambda=1.9$ with an unsteadiness as the blade passage
-frequency specified to mimic the experimental data.
+frequency specified to mimic the experimental data. The 2-D mesh is shown in
+Figure~\ref{fig:mesh}.
 
-To capture the boundary layer, 
+To capture the boundary layer,
+
+3-D computer aided design (CAD) files of the turbine are available from
+\cite{Bachant2014-RVAT-CAD}.
+
+The 3-D mesh was also generated with \textit{OpenFOAM}'s \textit{snappyHexMesh}
+application, with identical domain size, resolution, and boundary layer
+parameters in the $x$--$y$ plane, and \todo[inline]{Get $N_z$ for 3-D mesh.}
+cells in the vertical direction.
+
+\begin{figure}[ht]
+\caption{Snapshot of the 2-D computational mesh.}
+\label{fig:mesh}
+\end{figure}
 
 \subsection{Software}
 
-Simulations were run using the \texttt{pimpleDyMFoam} solver from the
-open-source finite volume CFD package OpenFOAM, version 2.3.x.
+Simulations were run using the \textit{pimpleDyMFoam} solver from the
+open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
 
 \section{Model verification}
 
