@@ -22,7 +22,7 @@
 % Use the \preprint command to place your local institutional report number 
 % on the title page in preprint mode.
 % Multiple \preprint commands are allowed.
-%\preprint{}
+\preprint{}
 
 \title{Modeling vertical-axis cross-flow turbine wakes}
 
@@ -105,12 +105,22 @@ somewhat low Reynolds number case ($5 \times 10^4$).
 
 \subsection{Computational mesh}
 
-The RANS models employ a sliding mesh, where the turbine zone rotates at a mean
-tip speed ratio $\lambda=1.9$ with an unsteadiness as the blade passage
-frequency specified to mimic the experimental data. The 2-D mesh is shown in
-Figure~\ref{fig:mesh}.
+The computational domain is a rectangular volume
 
-To capture the boundary layer,
+\todo[inline]{Add domain extent in terms of turbine diameter.}
+
+ with a cylindrical sliding mesh
+interface, where the turbine zone rotates at a mean tip speed ratio
+$\lambda=1.9$ with an unsteadiness as the blade passage frequency specified to
+mimic the experimental data. The 2-D mesh is shown in Figure~\ref{fig:mesh}.
+
+The mesh topology is kept constant, while its refinement is controlled by a
+single parameter---the number of cells in the streamwise direction, $N_x$. 
+
+To capture the boundary layer, 20 layers are
+
+In the 3-D mesh, layers are not added to the struts and shaft to save
+computational expense.
 
 3-D computer aided design (CAD) files of the turbine are available from
 \cite{Bachant2014-RVAT-CAD}.
@@ -129,6 +139,11 @@ cells in the vertical direction.
 
 Simulations were run using the \textit{pimpleDyMFoam} solver from the
 open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
+
+\subsection{Initial and boundary conditions}
+
+Initial and boundary conditions were set to match those of the tow tank as well
+as possible. 
 
 \section{Model verification}
 
