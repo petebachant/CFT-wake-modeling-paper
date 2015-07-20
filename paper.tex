@@ -106,13 +106,13 @@ somewhat low Reynolds number case ($5 \times 10^4$).
 \subsection{Computational mesh}
 
 The computational domain is a rectangular volume
-
 \todo[inline]{Add domain extent in terms of turbine diameter.}
-
- with a cylindrical sliding mesh
-interface, where the turbine zone rotates at a mean tip speed ratio
-$\lambda=1.9$ with an unsteadiness as the blade passage frequency specified to
-mimic the experimental data. The 2-D mesh is shown in Figure~\ref{fig:mesh}.
+with a cylindrical sliding mesh interface, where the turbine zone rotates at a
+mean tip speed ratio $\lambda=1.9$ with a sinusoidal fluctuation at the blade
+passage frequency specified to mimic the experimental data. 
+\todo[inline]{Get parameters of TSR unsteadiness.}
+The 2-D mesh is
+shown in Figure~\ref{fig:mesh}.
 
 The mesh topology is kept constant, while its refinement is controlled by a
 single parameter---the number of cells in the streamwise direction, $N_x$. 
