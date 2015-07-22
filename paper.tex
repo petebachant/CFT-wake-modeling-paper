@@ -83,11 +83,12 @@ Questions addressed:
 \begin{enumerate}
 
     \item Can 2-D RANS be used for array design?
-    
-    \item Can ALM--RANS be used for array design?
 
     \item Does 3-D RANS tell us more about what is happening, i.e, can it
     ``interpolate'' the experimental results?
+    
+    \item Does 3-D RANS realize the proper wake recovery proportions? This would
+    imply it could be a very accurate model if used in DES.
 
 \end{enumerate}
 
@@ -109,13 +110,13 @@ Goals:
 
 The flow field was modeled using the Reynolds-averaged Navier--Stokes equations,
 employing two different turbulence models--Menter's $k$--$\omega$ SST
-\cite{Menter1994} and the Spalart--Allmaras one equation model
+\cite{Menter1994} and the Spalart--Allmaras (SA) one equation model
 \cite{Spalart1992}. The SST model was chosen due to its prominence in the
 literature for simulating separating flows, which we assumed to be present in
-the current problem in the form of dynamic stall. The Spalart--Allmaras model
-was shown by Ferreira et al. \cite{Ferreira2007} to match experimental particle
-image velocimetry (PIV) results for a CFT in dynamic stall, though this was a
-somewhat low Reynolds number case ($5 \times 10^4$).
+the current problem in the form of dynamic stall. The SA model was shown by
+Ferreira et al. \cite{Ferreira2007} to match experimental particle image
+velocimetry (PIV) results for a CFT in dynamic stall, though this was a somewhat
+low Reynolds number case ($5 \times 10^4$).
 
 \subsection{Computational mesh}
 
@@ -158,6 +159,11 @@ open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
 
 Initial and boundary conditions were set to match those of the tow tank as well
 as possible. 
+
+For the SA model, the turbulence transport variable $\tilde{\nu}$, is ideally
+zero in the free stream \cite{Spalart1992}, though others recommend using
+$\tilde{\nu}/\nu \approx 3$--$5$ for fully turbulent simulations
+\cite{Spalart2007}.
 
 \section{Model verification}
 
