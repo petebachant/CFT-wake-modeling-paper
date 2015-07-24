@@ -237,7 +237,47 @@ each numerical model.}
 \todo[inline]{Add bar graph comparing various performance results for the RVAT.}
 
 
+\subsection{Wake characteristics}
 
+Mean velocity profiles at one turbine diameter downstream are shown in
+Figure~\ref{fig:mean-vel-profiles}. The 2-D results suffer from a blockage
+mismatch, i.e. keeping the proximity of the walls constant increases the
+blockage ratio.
+
+\begin{figure}
+\caption{Mean velocity profiles at $x/D=1$ from 2-D simulations, 3-D simulations
+($z/H=0$), and experiments \cite{Bachant2015-JoT}.}
+\label{fig:mean-vel-profiles}
+\end{figure}
+
+Turbulence kinetic energy profiles are shown in Figure~\ref{fig:k-profiles}.
+Note that there are two profiles for each---one computed from the components
+from the Reynolds stress tensor $R$:
+
+\begin{equation}
+k = \frac{1}{2} \left( R_{xx} + R_{yy} + R_{zz} \right);
+\label{eq:k}
+\end{equation}
+and one that includes unsteadiness in the Reynolds-averaged velocity
+\begin{equation}
+k_{\mathrm{tot}} = k + \frac{1}{2} \left( 
+\overline{U^\prime}^2 + 
+\overline{V^\prime}^2 + 
+\overline{W^\prime}^2 \right),
+\label{eq:ktot}
+\end{equation}
+where $U^\prime = U - \overline{U}$.
+
+\begin{figure}
+\caption{Turbulence kinetic energy profiles at $x/D=1$ from 2-D simulations, 3-D
+simulations ($z/H=0$), and experiments \cite{Bachant2015-JoT}.}
+\label{fig:k-profiles}
+\end{figure}
+
+We see that the side of the turbine with the upwind facing blade ($+y$), despite
+having regions of high turbulence intensity, is actually more dominated by
+unsteadiness in the Reynolds-averaged velocity, rather than the model's
+turbulence kinetic energy.
 
 
 \begin{acknowledgments}
