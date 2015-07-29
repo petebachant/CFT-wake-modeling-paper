@@ -73,6 +73,7 @@ def plot_verification():
                      "timestep_dep.csv")
     df_ts_sa = pd.read_csv(p)
     df_nx_sa = pd.read_csv(p.replace("timestep_dep", "spatial_grid_dep"))
+    df_nx_sa.sort("nx", inplace=True)
     p = os.path.join(cfd_dirs["2-D"]["kOmegaSST"], "processed", 
                      "timestep_dep.csv")
     df_ts_sst = pd.read_csv(p)
@@ -81,15 +82,29 @@ def plot_verification():
     df_ts_sa["steps_per_rev"] = deltat_to_steps_per_rev(df_ts_sa.dt)
     df_ts_sst["steps_per_rev"] = deltat_to_steps_per_rev(df_ts_sst.dt)
     # Create subplots to use for time (left) and space (right)
-    fig, ax = plt.subplots(nrows=1, ncols=2)
-    ax[0].plot(df_ts_sst["steps_per_rev"], df_ts_sst["cp"], "ok", label="SST")
-    ax[0].plot(df_ts_sa["steps_per_rev"], df_ts_sst["cp"], "^r", label="SA")
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 3.25))
+    # Create steps per rev plot
+    ax[0].plot(df_ts_sst["steps_per_rev"], df_ts_sst["cp"], "-ok", label="SST")
+    ax[0].plot(df_ts_sa["steps_per_rev"], df_ts_sa["cp"], "-^r", label="SA")
     ax[0].set_xlabel(r"Time steps per rev.")
-    ax.set_ylabel(r"$C_P$")
-    ax[1].plot(df_nx_sst["nx"], df_nx_sst["cp"], "ok", label="SST")
-    ax[1].plot(df_nx_sa["nx"], df_nx_sst["cp"], "^r", label="SA")
+    ax[0].set_ylabel(r"$C_P$")
+    # Annotate the chosen time steps
+    arrowprops = {"facecolor": "black", "linewidth": 0, "width": 2,
+                  "alpha": 0.5}
+    ax[0].annotate(r"$\Delta t = 0.002$", xy=(850, 0.51), xytext=(1000, 0.6),
+                   arrowprops=arrowprops)
+    ax[0].annotate(r"$\Delta t = 0.001$", xy=(1650, 0.48), xytext=(1800, 0.65),
+                   arrowprops=arrowprops)
+    ax[0].grid(True)
+    # Create nx plot
+    ax[1].plot(df_nx_sst["nx"], df_nx_sst["cp"], "-ok", label="SST")
+    ax[1].plot(df_nx_sa["nx"], df_nx_sa["cp"], "-^r", label="SA")
     ax[1].set_xlabel(r"$N_x$")
+    ax[1].legend(loc="lower right")
+    ax[1].grid(True)
     fig.tight_layout()
+    if save:
+        fig.savefig("figures/verification" + savetype)
     
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
