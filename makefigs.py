@@ -9,6 +9,7 @@ import os
 from pxl.styleplot import set_sns
 import pandas as pd
 import numpy as np
+from importlib.machinery import SourceFileLoader
 
 cfd_sst_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14"
 cfd_sa_dir = "/media/pete/Data2/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14-sa"
@@ -20,6 +21,20 @@ cfd_dirs = {"3-D": {"kOmegaSST": cfd_sst_dir,
                     "SpalartAllmaras": cfd_sa_dir},
             "2-D": {"kOmegaSST": cfd_sst_2d_dir, 
                     "SpalartAllmaras": cfd_sa_2d_dir}}
+
+# Import individual modules from each case
+sst2dpr = SourceFileLoader("sst2dpr", 
+                  os.path.join(cfd_dirs["2-D"]["kOmegaSST"],
+                  "modules", "processing.py")).load_module()
+sa2dpr = SourceFileLoader("sa2dpr", 
+                  os.path.join(cfd_dirs["2-D"]["SpalartAllmaras"],
+                  "modules", "processing.py")).load_module()
+sa3dpr = SourceFileLoader("sa3dpr", 
+                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
+                  "modules", "processing.py")).load_module()
+sa3dpl = SourceFileLoader("sa3dpl", 
+                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
+                  "modules", "plotting.py")).load_module()
 
 save = True
 savetype = ".pdf"
@@ -43,8 +58,10 @@ def plot_exp_meancontquiv():
 def plot_cfd_meancontquiv(case="kOmegaSST"):
     """Plots wake mean velocity contours/quivers from 3-D CFD case."""
     os.chdir(cfd_dirs["3-D"][case])
-    import processing as processing_cfd
-    processing_cfd.plot_meancontquiv()
+    if case == "SpalartAllmaras":
+        sa3dpl.plot_meancontquiv()
+    elif case == "kOmegaSST":
+        sst3dpl.plot_meancontquiv()
     os.chdir(paper_dir)
     if save:
          plt.savefig("figures/meancontquiv_" + case + savetype)
@@ -105,16 +122,40 @@ def plot_verification():
     fig.tight_layout()
     if save:
         fig.savefig("figures/verification" + savetype)
+        
+def plot_u_profiles():
+    """Plot streamwise velocity profiles for all cases."""
+    fig, ax = plt.subplots()
+    # Load data from 2-D SST case
+    os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
+    df = sst2dpr.load_u_profile()
+    ax.plot(df.y_R, df.u, "-", label="SST (2-D)")
+    # Load data from 2-D SA case
+    os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
+    df = sa2dpr.load_u_profile()
+    ax.plot(df.y_R, df.u, "--", label="SA (2-D)")
+    # Load data from 3-D SA case
+    os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
+    df = sa3dpr.load_u_profile()
+    ax.plot(df.y_R, df.u, "-.", label="SST (3-D)")
+    ax.legend(loc="best")
+    ax.set_xlabel("$y/R$")
+    ax.set_ylabel(r"$U/U_\infty$")
+    plt.tight_layout()
+    # Move back into this directory
+    os.chdir(paper_dir)
     
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
         os.mkdir("figures")
     set_sns()
+    plt.rcParams["axes.grid"] = True
     
 #    plot_exp_perf_curve()
 #    plot_exp_meancontquiv()
 #    plot_cfd_meancontquiv("kOmegaSST")
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
-    plot_verification()
+#    plot_verification()
+    plot_u_profiles()
     plt.show()
