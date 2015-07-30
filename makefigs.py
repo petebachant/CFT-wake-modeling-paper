@@ -91,9 +91,9 @@ def plot_verification():
     # Annotate the chosen time steps
     arrowprops = {"facecolor": "black", "linewidth": 0, "width": 2,
                   "alpha": 0.5}
-    ax[0].annotate(r"$\Delta t = 0.002$", xy=(850, 0.51), xytext=(1000, 0.6),
+    ax[0].annotate(r"$\Delta t = 0.002$", xy=(850, 0.514), xytext=(1000, 0.6),
                    arrowprops=arrowprops)
-    ax[0].annotate(r"$\Delta t = 0.001$", xy=(1650, 0.48), xytext=(1800, 0.65),
+    ax[0].annotate(r"$\Delta t = 0.001$", xy=(1655, 0.49), xytext=(1800, 0.65),
                    arrowprops=arrowprops)
     ax[0].grid(True)
     # Create nx plot
