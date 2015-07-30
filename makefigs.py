@@ -137,7 +137,7 @@ def plot_u_profiles():
     # Load data from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
     df = sa3dpr.load_u_profile()
-    ax.plot(df.y_R, df.u, "-.", label="SST (3-D)")
+    ax.plot(df.y_R, df.u, "-.", label="SA (3-D)")
     ax.legend(loc="best")
     ax.set_xlabel("$y/R$")
     ax.set_ylabel(r"$U/U_\infty$")
