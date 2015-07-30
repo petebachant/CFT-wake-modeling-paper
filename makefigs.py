@@ -84,8 +84,8 @@ def plot_verification():
     # Create subplots to use for time (left) and space (right)
     fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 3.25))
     # Create steps per rev plot
-    ax[0].plot(df_ts_sst["steps_per_rev"], df_ts_sst["cp"], "-ok", label="SST")
-    ax[0].plot(df_ts_sa["steps_per_rev"], df_ts_sa["cp"], "-^r", label="SA")
+    ax[0].plot(df_ts_sst["steps_per_rev"], df_ts_sst["cp"], "-o", label="SST")
+    ax[0].plot(df_ts_sa["steps_per_rev"], df_ts_sa["cp"], "-^", label="SA")
     ax[0].set_xlabel(r"Time steps per rev.")
     ax[0].set_ylabel(r"$C_P$")
     # Annotate the chosen time steps
@@ -97,8 +97,8 @@ def plot_verification():
                    arrowprops=arrowprops)
     ax[0].grid(True)
     # Create nx plot
-    ax[1].plot(df_nx_sst["nx"], df_nx_sst["cp"], "-ok", label="SST")
-    ax[1].plot(df_nx_sa["nx"], df_nx_sa["cp"], "-^r", label="SA")
+    ax[1].plot(df_nx_sst["nx"], df_nx_sst["cp"], "-o", label="SST")
+    ax[1].plot(df_nx_sa["nx"], df_nx_sa["cp"], "-^", label="SA")
     ax[1].set_xlabel(r"$N_x$")
     ax[1].legend(loc="lower right")
     ax[1].grid(True)
