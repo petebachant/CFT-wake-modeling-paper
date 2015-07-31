@@ -123,24 +123,31 @@ def plot_verification():
     if save:
         fig.savefig("figures/verification" + savetype)
         
-def plot_u_profiles():
-    """Plot streamwise velocity profiles for all cases."""
-    fig, ax = plt.subplots()
+def plot_profiles():
+    """Plot streamwise velocity and TKE profiles for all cases."""
+    fig, ax = plt.subplots(1, 2, figsize=(7.5, 3))
     # Load data from 2-D SST case
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
     df = sst2dpr.load_u_profile()
-    ax.plot(df.y_R, df.u, "-", label="SST (2-D)")
+    ax[0].plot(df.y_R, df.u, "-", label="SST (2-D)")
+    df = sst2dpr.load_k_profile()
+    ax[1].plot(df.y_R, df.k_total, "-", label="SST (2-D)")
     # Load data from 2-D SA case
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
     df = sa2dpr.load_u_profile()
-    ax.plot(df.y_R, df.u, "--", label="SA (2-D)")
+    ax[0].plot(df.y_R, df.u, "--", label="SA (2-D)")
+    df = sa2dpr.load_k_profile()
+    ax[1].plot(df.y_R, df.k_total, "--", label="SA (2-D)")
     # Load data from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
     df = sa3dpr.load_u_profile()
-    ax.plot(df.y_R, df.u, "-.", label="SA (3-D)")
-    ax.legend(loc="best")
-    ax.set_xlabel("$y/R$")
-    ax.set_ylabel(r"$U/U_\infty$")
+    ax[0].plot(df.y_R, df.u, "-.", label="SA (3-D)")
+    df = sa3dpr.load_k_profile()
+    ax[1].plot(df.y_R, df.k_total, "-.", label="SA (3-D)")
+    ax[1].legend(loc="best")
+    for a in ax: a.set_xlabel("$y/R$")
+    ax[0].set_ylabel(r"$U/U_\infty$")
+    ax[1].set_ylabel(r"$k/U_\infty^2$")
     plt.tight_layout()
     # Move back into this directory
     os.chdir(paper_dir)
@@ -157,5 +164,5 @@ if __name__ == "__main__":
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
-    plot_u_profiles()
+    plot_profiles()
     plt.show()
