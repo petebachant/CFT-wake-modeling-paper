@@ -151,6 +151,8 @@ def plot_profiles():
     plt.tight_layout()
     # Move back into this directory
     os.chdir(paper_dir)
+    if save:
+        fig.savefig("figures/profiles" + savetype)
     
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
