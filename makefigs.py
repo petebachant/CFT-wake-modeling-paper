@@ -39,6 +39,11 @@ sa3dpl = SourceFileLoader("sa3dpl",
 save = True
 savetype = ".pdf"
 
+def load_exp_data():
+    """Loads section of exp wake data for U_infty=1.0 m/s."""
+    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
+                                    "Wake-1.0.csv"))
+
 def plot_exp_perf_curve():
     os.chdir(exp_dir)
     import Modules.plotting as plotting_exp
@@ -144,6 +149,11 @@ def plot_profiles():
     ax[0].plot(df.y_R, df.u, "-.", label="SA (3-D)")
     df = sa3dpr.load_k_profile()
     ax[1].plot(df.y_R, df.k_total, "-.", label="SA (3-D)")
+    # Load data from experiment
+    df = load_exp_data()
+    ax[0].plot(df.y_R, df.mean_u, "--o", label="Exp.")
+    ax[1].plot(df.y_R, df.k, "--o", label="Exp.")
+    # Set legend and labels
     ax[1].legend(loc="best")
     for a in ax: a.set_xlabel("$y/R$")
     ax[0].set_ylabel(r"$U/U_\infty$")
@@ -153,6 +163,23 @@ def plot_profiles():
     os.chdir(paper_dir)
     if save:
         fig.savefig("figures/profiles" + savetype)
+        
+def make_perf_bar_graphs():
+    """Create bar graphs for C_P and C_D for all cases."""
+    # Load experimental data
+    df = load_exp_data()
+    cp_exp = df.cp.mean()
+    cd_exp = df.cd.mean()
+    # Load performance from 2-D SST
+    os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
+    perf = sst2dpr.load_perf()
+    cp_sst_2d = perf["C_P"]
+    cd_sst_2d = perf["C_D"]
+    # Load performance from 2-D SA
+    os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
+    perf = sa2dpr.load_perf()
+    cp_sa_2d = perf["C_P"]
+    cd_sa_2d = perf["C_D"]
     
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
@@ -166,5 +193,6 @@ if __name__ == "__main__":
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
-    plot_profiles()
+#    plot_profiles()
+    make_perf_bar_graphs()
     plt.show()
