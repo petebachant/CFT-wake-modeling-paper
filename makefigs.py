@@ -35,6 +35,9 @@ sa3dpr = SourceFileLoader("sa3dpr",
 sa3dpl = SourceFileLoader("sa3dpl", 
                   os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
                   "modules", "plotting.py")).load_module()
+sst3dpr = SourceFileLoader("sst3dpr", 
+                  os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
+                  "modules", "processing.py")).load_module()
 
 save = True
 savetype = ".pdf"
@@ -166,20 +169,50 @@ def plot_profiles():
         
 def make_perf_bar_graphs():
     """Create bar graphs for C_P and C_D for all cases."""
+    cp = {}
+    cd = {}
     # Load experimental data
     df = load_exp_data()
-    cp_exp = df.cp.mean()
-    cd_exp = df.cd.mean()
+    cp["Exp."] = df.cp.mean()
+    cd["Exp."] = df.cd.mean()
     # Load performance from 2-D SST
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
-    perf = sst2dpr.load_perf()
-    cp_sst_2d = perf["C_P"]
-    cd_sst_2d = perf["C_D"]
+    perf = sst2dpr.calc_perf()
+    cp["SST (2-D)"] = perf["C_P"]
+    cd["SST (2-D)"] = perf["C_D"]
     # Load performance from 2-D SA
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
-    perf = sa2dpr.load_perf()
-    cp_sa_2d = perf["C_P"]
-    cd_sa_2d = perf["C_D"]
+    perf = sa2dpr.calc_perf()
+    cp["SA (2-D)"] = perf["C_P"]
+    cd["SA (2-D)"] = perf["C_D"]
+    # Load performance from 3-D SST
+    os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
+    perf = sst3dpr.calc_perf()
+    cp["SST (3-D)"] = perf["C_P"]
+    cd["SST (3-D)"] = perf["C_D"]
+    # Load performance from 3-D SA
+    os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
+    perf = sa3dpr.load_perf()
+    cp["SA (3-D)"] = perf["C_P"]
+    cd["SA (3-D)"] = perf["C_D"]
+    # Make figure
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7, 3))
+    names = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
+    quantities = [cp[name] for name in names]
+    ax[0].bar(range(len(names)), quantities, color="gray", width=0.5,
+              edgecolor="black")
+    ax[0].set_xticks(np.arange(len(names))+0.25)
+    ax[0].set_xticklabels(names)
+#    ax[0].hlines(0, 0, len(names), color="black")
+    ax[0].set_ylabel(r"$C_P$")
+    quantities = [cp[name] for name in names]
+    ax[1].bar(range(len(names)), quantities, color="gray", width=0.5,
+              edgecolor="black")
+    ax[1].set_xticks(np.arange(len(names))+0.25)
+    ax[1].set_xticklabels(names)
+#    ax[0].hlines(0, 0, len(names), color="black")
+    ax[1].set_ylabel(r"$C_D$")
+    
     
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
