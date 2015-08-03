@@ -32,9 +32,9 @@ sa2dpr = SourceFileLoader("sa2dpr",
 sa3dpr = SourceFileLoader("sa3dpr", 
                   os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
                   "modules", "processing.py")).load_module()
-sa3dpl = SourceFileLoader("sa3dpl", 
-                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
-                  "modules", "plotting.py")).load_module()
+#sa3dpl = SourceFileLoader("sa3dpl", 
+#                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
+#                  "modules", "plotting.py")).load_module()
 sst3dpr = SourceFileLoader("sst3dpr", 
                   os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
                   "modules", "processing.py")).load_module()
@@ -167,14 +167,14 @@ def plot_profiles():
     if save:
         fig.savefig("figures/profiles" + savetype)
         
-def make_perf_bar_graphs():
-    """Create bar graphs for C_P and C_D for all cases."""
+def make_perf_bar_charts():
+    """Create bar charts for C_P and C_D for all cases."""
     cp = {}
     cd = {}
     # Load experimental data
     df = load_exp_data()
-    cp["Exp."] = df.cp.mean()
-    cd["Exp."] = df.cd.mean()
+    cp["Exp."] = df.mean_cp.mean()
+    cd["Exp."] = df.mean_cd.mean()
     # Load performance from 2-D SST
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
     perf = sst2dpr.calc_perf()
@@ -192,26 +192,28 @@ def make_perf_bar_graphs():
     cd["SST (3-D)"] = perf["C_D"]
     # Load performance from 3-D SA
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
-    perf = sa3dpr.load_perf()
+    perf = sa3dpr.calc_perf()
     cp["SA (3-D)"] = perf["C_P"]
     cd["SA (3-D)"] = perf["C_D"]
     # Make figure
-    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7, 3))
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 3))
     names = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
     quantities = [cp[name] for name in names]
     ax[0].bar(range(len(names)), quantities, color="gray", width=0.5,
               edgecolor="black")
     ax[0].set_xticks(np.arange(len(names))+0.25)
-    ax[0].set_xticklabels(names)
-#    ax[0].hlines(0, 0, len(names), color="black")
+    ax[0].set_xticklabels(names, rotation=45)
     ax[0].set_ylabel(r"$C_P$")
-    quantities = [cp[name] for name in names]
+    quantities = [cd[name] for name in names]
     ax[1].bar(range(len(names)), quantities, color="gray", width=0.5,
               edgecolor="black")
     ax[1].set_xticks(np.arange(len(names))+0.25)
-    ax[1].set_xticklabels(names)
-#    ax[0].hlines(0, 0, len(names), color="black")
+    ax[1].set_xticklabels(names, rotation=45)
     ax[1].set_ylabel(r"$C_D$")
+    fig.tight_layout()
+    os.chdir(paper_dir)
+    if save:
+       fig.savefig("figures/perf_bar_chart" + savetype)
     
     
 if __name__ == "__main__":
@@ -227,5 +229,5 @@ if __name__ == "__main__":
 #    plot_cfd_u_profile()
 #    plot_verification()
 #    plot_profiles()
-    make_perf_bar_graphs()
+    make_perf_bar_charts()
     plt.show()
