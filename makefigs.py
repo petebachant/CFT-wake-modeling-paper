@@ -214,6 +214,13 @@ def make_perf_bar_charts():
     os.chdir(paper_dir)
     if save:
        fig.savefig("figures/perf_bar_chart" + savetype)
+       
+def make_recovery_bar_chart():
+    """
+    Create a bar chart with x-labels for each recovery term and 5 different
+    bars per term, corresponding to each CFD case and the experimental data.
+    """
+    pass
     
     
 if __name__ == "__main__":
