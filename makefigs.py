@@ -267,26 +267,28 @@ def make_recovery_bar_chart():
     names = [r"$-V \frac{\partial U}{\partial y}$", 
              r"$-W \frac{\partial U}{\partial z}$", 
              r"Turb. trans.",
-             r"Visc. trans.",
-             r"$-\frac{\partial P}{\partial x}$"]
-    quantities = ["y_adv", "z_adv", "turb_trans", "visc_trans", 
-                  "pressure_trans"]
+             r"$-\frac{\partial P}{\partial x}$",
+             r"Visc. trans."]
+    quantities = ["y_adv", "z_adv", "turb_trans", "pressure_trans",
+                  "visc_trans"]
     cases = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
-    fig, ax = plt.subplots(figsize=(7.5, 3))
+    areas = [3.66*1.0, 3.66*1.0, 3.66*2.44, 3.66*2.44, 3.0*0.625]
+    fig, ax = plt.subplots(figsize=(7.5, 3.5))
     cm = plt.cm.coolwarm
-
     
     # Plot all recovery terms
     for n, case in enumerate(cases):
         q = [data[case][v] for v in quantities]
+        q = np.array(q)*areas[n]
         color = cm(int(n/4*256))
         ax.bar(np.arange(len(names)) + n*.15, q, color=color, width=0.15, 
                edgecolor="black", label=case)
     ax.set_xticks(np.arange(len(names)) + 5*.15/2)
     ax.set_xticklabels(names)
     ax.hlines(0, 0, len(names), color="gray")
-    ax.set_ylabel(r"$\frac{U \, \mathrm{ transport}}{UU_\infty D^{-1}}$")
-    ax.legend(loc="upper right", ncol=2)
+    ax.set_ylabel(r"$\frac{U \, \mathrm{ transport} \times A_c}"
+                  "{UU_\infty D^{-1}}$")
+    ax.legend(loc="best", ncol=1)
     fig.tight_layout()
 
     
