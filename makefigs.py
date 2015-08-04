@@ -39,8 +39,8 @@ sa3dpr = SourceFileLoader("sa3dpr",
 sst3dpr = SourceFileLoader("sst3dpr", 
                   os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
                   "modules", "processing.py")).load_module()
-exppr = SourceFileLoader("exppr", os.path.join(exp_dir, "Modules", 
-                         "processing.py")).load_module()
+#exppr = SourceFileLoader("exppl", os.path.join(exp_dir, "Modules", 
+#                         "plotting.py")).load_module()
                          
 U = 1.0
 D = 1.0
@@ -225,7 +225,8 @@ def make_perf_bar_charts():
 def load_exp_recovery():
     """Load recovery terms from experimental data."""
     os.chdir(exp_dir)
-    wm = exppr.WakeMap(1.0)
+    import Modules.plotting as exppl
+    wm = exppl.WakeMap(1.0)
     dUdy = wm.dUdy
     dUdz = wm.dUdz
     tt = wm.ddy_upvp + wm.ddz_upwp
@@ -265,9 +266,9 @@ def make_recovery_bar_chart():
     # Create figure
     names = [r"$-V \frac{\partial U}{\partial y}$", 
              r"$-W \frac{\partial U}{\partial z}$", 
-             r"$-\frac{\partial}{\partial y} \overline{u^\prime v^\prime}$", 
-             r"$-\frac{\partial}{\partial z} \overline{u^\prime w^\prime}$",
-             r"$\nu \frac{\partial^2 U}{\partial y^2} \times 10^3$"]
+             r"$-\frac{\partial}{\partial x_j} \overline{u^\prime u_j^\prime}$",
+             r"$\nu \nabla^2 U$",
+             r"$-\frac{\partial P}{\partial x}$"]
     quantities = ["y_adv", "z_adv", "turb_trans", "visc_trans", 
                   "pressure_trans"]
     cases = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
