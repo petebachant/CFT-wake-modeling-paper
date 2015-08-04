@@ -7,6 +7,7 @@ from __future__ import print_function, division
 import matplotlib.pyplot as plt
 import os
 from pxl.styleplot import set_sns
+import pxl.timeseries as ts
 import pandas as pd
 import numpy as np
 from importlib.machinery import SourceFileLoader
@@ -38,6 +39,12 @@ sa3dpr = SourceFileLoader("sa3dpr",
 sst3dpr = SourceFileLoader("sst3dpr", 
                   os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
                   "modules", "processing.py")).load_module()
+exppr = SourceFileLoader("exppr", os.path.join(exp_dir, "Modules", 
+                         "processing.py")).load_module()
+                         
+U = 1.0
+D = 1.0
+nu = 1e-6
 
 save = True
 savetype = ".pdf"
@@ -215,12 +222,80 @@ def make_perf_bar_charts():
     if save:
        fig.savefig("figures/perf_bar_chart" + savetype)
        
+def load_exp_recovery():
+    """Load recovery terms from experimental data."""
+    os.chdir(exp_dir)
+    wm = exppr.WakeMap(1.0)
+    dUdy = wm.dUdy
+    dUdz = wm.dUdz
+    tt = wm.ddy_upvp + wm.ddz_upwp
+    d2Udy2 = wm.d2Udy2
+    d2Udz2 = wm.d2Udz2
+    meanu, meanv, meanw = wm.df.mean_u, wm.df.mean_v, wm.df.mean_w
+    y_R, z_H = wm.y_R, wm.z_H
+    return {"y_adv": ts.average_over_area(-meanv*dUdy/meanu/U*D, y_R, z_H),
+            "z_adv": ts.average_over_area(-meanw*dUdz/meanu/U*D, y_R, z_H),
+            "turb_trans": ts.average_over_area(-tt/meanu/U*D, y_R, z_H),
+            "visc_trans": ts.average_over_area(nu*(d2Udy2 + d2Udz2)/meanu/U*D, 
+                                               y_R, z_H),
+            "pressure_trans": np.nan}
+       
 def make_recovery_bar_chart():
     """
     Create a bar chart with x-labels for each recovery term and 5 different
     bars per term, corresponding to each CFD case and the experimental data.
     """
-    pass
+    data = {}
+    # Load recovery terms from 2-D SST case
+    os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
+    data["SST (2-D)"] = sa2dpr.read_funky_log()
+    # Load recovery terms from 2-D SA case
+    os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
+    data["SA (2-D)"] = sst2dpr.read_funky_log()
+    # Load recovery terms from 3-D SST case (0.0 for now)
+    os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
+    data["SST (3-D)"] = {k: 0.0 for k in data["SST (2-D)"].keys()}
+    # Load recovery terms from 3-D SA case
+    os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
+    data["SA (3-D)"] = sa3dpr.read_funky_log()
+    
+    # Load experimental data
+    data["Exp."] = load_exp_recovery()
+
+    # Create figure
+    names = [r"$-V \frac{\partial U}{\partial y}$", 
+             r"$-W \frac{\partial U}{\partial z}$", 
+             r"$-\frac{\partial}{\partial y} \overline{u^\prime v^\prime}$", 
+             r"$-\frac{\partial}{\partial z} \overline{u^\prime w^\prime}$",
+             r"$\nu \frac{\partial^2 U}{\partial y^2} \times 10^3$"]
+    quantities = ["y_adv", "z_adv", "turb_trans", "visc_trans", 
+                  "pressure_trans"]
+    cases = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
+    fig, ax = plt.subplots(figsize=(7.5, 3))
+    cm = plt.cm.coolwarm
+
+    
+    # Plot all recovery terms
+    for n, case in enumerate(cases):
+        q = [data[case][v] for v in quantities]
+        color = cm(int(n/4*256))
+        ax.bar(np.arange(len(names)) + n*.15, q, color=color, width=0.15, 
+               edgecolor="black", label=case)
+    ax.set_xticks(np.arange(len(names)) + 5*.15/2)
+    ax.set_xticklabels(names)
+    ax.hlines(0, 0, len(names), color="gray")
+    ax.set_ylabel(r"$\frac{U \, \mathrm{ transport}}{UU_\infty D^{-1}}$")
+    ax.legend(loc="upper right", ncol=2)
+    fig.tight_layout()
+
+    
+    os.chdir(paper_dir)
+    if save:
+        fig.savefig("figures/mom_bar_graph"+savetype)
+    
+    for k,v in data.items():
+        print(k)
+        print(v)
     
     
 if __name__ == "__main__":
@@ -236,5 +311,6 @@ if __name__ == "__main__":
 #    plot_cfd_u_profile()
 #    plot_verification()
 #    plot_profiles()
-    make_perf_bar_charts()
+#    make_perf_bar_charts()
+    make_recovery_bar_chart()
     plt.show()
