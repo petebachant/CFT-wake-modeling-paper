@@ -266,8 +266,8 @@ def make_recovery_bar_chart():
     # Create figure
     names = [r"$-V \frac{\partial U}{\partial y}$", 
              r"$-W \frac{\partial U}{\partial z}$", 
-             r"$-\frac{\partial}{\partial x_j} \overline{u^\prime u_j^\prime}$",
-             r"$\nu \nabla^2 U$",
+             r"Turb. trans.",
+             r"Visc. trans.",
              r"$-\frac{\partial P}{\partial x}$"]
     quantities = ["y_adv", "z_adv", "turb_trans", "visc_trans", 
                   "pressure_trans"]
