@@ -255,7 +255,7 @@ def make_recovery_bar_chart():
     data["SA (2-D)"] = sst2dpr.read_funky_log()
     # Load recovery terms from 3-D SST case (0.0 for now)
     os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
-    data["SST (3-D)"] = {k: 0.0 for k in data["SST (2-D)"].keys()}
+    data["SST (3-D)"] = sst3dpr.read_funky_log()
     # Load recovery terms from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
     data["SA (3-D)"] = sa3dpr.read_funky_log()
