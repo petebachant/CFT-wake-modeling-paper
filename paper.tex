@@ -240,18 +240,19 @@ each numerical model.}
 \subsection{Wake characteristics}
 
 Mean velocity profiles at one turbine diameter downstream are shown in
-Figure~\ref{fig:mean-vel-profiles}. The 2-D results suffer from a blockage
+Figure~\ref{fig:profiles}. The 2-D results suffer from a blockage
 mismatch, i.e. keeping the proximity of the walls constant increases the
 blockage ratio.
 
 \begin{figure}
-\caption{Mean velocity profiles at $x/D=1$ from 2-D simulations, 3-D simulations
-($z/H=0$), and experiments \cite{Bachant2015-JoT}.}
-\label{fig:mean-vel-profiles}
+\includegraphics[width=0.95\textwidth]{figures/profiles} \caption{Mean velocity
+	(left) and turbulence kinetic energy (right) profiles at $x/D=1$ from 2-D
+	simulations, 3-D simulations ($z/H=0$), and experiments \cite{Bachant2015-JoT}.}
+\label{fig:profiles}
 \end{figure}
 
-Turbulence kinetic energy profiles are shown in Figure~\ref{fig:k-profiles}. The
-turbulence kinetic energy is calculated as
+Turbulence kinetic energy profiles are also shown in Figure~\ref{fig:profiles}.
+The turbulence kinetic energy is calculated as
 \begin{equation}
 k = k_{\mathrm{RA}} + \frac{1}{2} \left( 
 \overline{U^\prime}^2 + 
@@ -264,18 +265,14 @@ calculated by the turbulence model, which is zero for the SA model. Note that
 the statistics of the Reynolds-averaged velocity are calculated from a time
 series that has been downsampled to 50 Hz. It is assumed that this is far enough
 from the blade passage frequency that differences from the variance in the
-original velocity will be negligible
-
-\begin{figure}
-\caption{Turbulence kinetic energy profiles at $x/D=1$ from 2-D simulations, 3-D
-simulations ($z/H=0$), and experiments \cite{Bachant2015-JoT}.}
-\label{fig:k-profiles}
-\end{figure}
+original velocity will be negligible.
 
 We see that the side of the turbine with the upwind facing blade ($+y$), despite
 having regions of high turbulence intensity, is actually more dominated by
 unsteadiness in the Reynolds-averaged velocity, rather than the model's
 turbulence kinetic energy.
+
+
 
 
 \begin{acknowledgments}
