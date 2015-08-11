@@ -196,7 +196,8 @@ and timestep. The grid topology was fixed, but the number of cells per unit
 length were scaled proportionally, maintaining the same background mesh cell
 aspect ratio. Results for this parameter sweep are shown in 
 Figure~\ref{fig:spatial-grid-dep}, from which the final number of streamwise
-grid points $N_x = 70$ was chosen.
+grid points $N_x = 70$ was chosen. This corresponds to a total cell count of approximately $5 \times 10^4$ for the 2-D cases and 
+\todo[inline]{Get total cell count for 3-D case.}
 
 \begin{figure}[ht]
 \caption{Spatial grid dependence for the SST (a) and Spalart--Allmaras (b) 
@@ -224,17 +225,31 @@ Models were validated against several open datasets.
 
 \section{Results}
 
+Computations for the 3-D cases were run on 192 processes and took on the order
+of 1,000 CPU hours per second of simulation time. The 2-D simulations were run
+on a single processor and took on the order of one CPU hour per second.
+
+
 \subsection{Performance prediction}
 
-Predictions for both the power and drag coefficients are shown in Figure~\ref{fig:perf-comp}
+Predictions for both the mean rotor power and drag coefficients are shown in
+Figure~\ref{fig:perf-comp}. In general, the 2-D CFD cases both overpredict
+turbine loading, which is likely due to their increased blockage ratio,
+unresolved blade end effects, and lack of blade support struts.
+
+The 3-D simulations fair better at predicting the experimental measurements,
+with the Spalart--Allmaras model performing relatively better. The apparent
+overprediction of rotor drag coefficient could be an effect of the experimental
+procedure, where the ``tare drag'' from the turbine mounting structure was
+measured without a turbine installed, then subtracted in post-processing.
+Technically the local flow field will have changed, and hence the tare drag will
+change as well.
 
 \begin{figure}[ht]
-\caption{Power (a) and drag (b) coefficient predictions from experiments and
-each numerical model.}
-\label{fig:perf-comp}
+    \includegraphics[width=0.9\textwidth]{figures/perf_bar_chart} \caption{Power
+        (left) and drag (right) coefficient predictions from experiments and each
+        numerical model.} \label{fig:perf-comp}
 \end{figure}
-
-\todo[inline]{Add bar graph comparing various performance results for the RVAT.}
 
 
 \subsection{Wake characteristics}
