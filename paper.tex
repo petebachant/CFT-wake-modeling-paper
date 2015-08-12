@@ -195,7 +195,7 @@ convergence of the turbine mean power coefficient with respect to grid spacing
 and timestep. The grid topology was fixed, but the number of cells per unit
 length were scaled proportionally, maintaining the same background mesh cell
 aspect ratio. Results for this parameter sweep are shown in
-Figure~\ref{fig:spatial-grid-dep}, from which the final number of streamwise
+Figure~\ref{fig:verification}, from which the final number of streamwise
 grid points $N_x = 70$ was chosen. This corresponds to a total cell count of
 approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
 
@@ -209,11 +209,11 @@ approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
         out with $N_x=70$ and grid size dependence with the time steps annotated for
         each turbulence model.}
     
-    \label{fig:spatial-grid-dep}
+    \label{fig:verification}
 \end{figure}
 
 Time step dependence was studied using the $N_x=70$ grid, the results from which
-are shown in Figure~\ref{fig:timestep-dep}. It was seen that the
+are shown in Figure~\ref{fig:verification}. It was seen that the
 Spalart--Allmaras model converged well with decreasing time step, leading to a
 final time step of 0.001 s. The results from the SST model show a local minimum,
 at $\Delta t = 0.002$ s, which was the final time step chosen to run the
@@ -283,11 +283,11 @@ blockage ratio.
 Turbulence kinetic energy profiles are also shown in Figure~\ref{fig:profiles}.
 The turbulence kinetic energy is calculated as
 \begin{equation}
-k = k_{\mathrm{RA}} + \frac{1}{2} \left( 
-\overline{U^\prime}^2 + 
-\overline{V^\prime}^2 + 
-\overline{W^\prime}^2 \right),
-\label{eq:k}
+    k = k_{\mathrm{RA}} + \frac{1}{2} \left( 
+    \overline{U^\prime}^2 + 
+    \overline{V^\prime}^2 + 
+    \overline{W^\prime}^2 \right),
+    \label{eq:k}
 \end{equation}
 where $U^\prime = U - \overline{U}$ and $k_{\mathrm{RA}}$ is the kinetic energy
 calculated by the turbulence model, which is zero for the SA model. Note that
@@ -306,9 +306,14 @@ Wosnik\cite{Bachant2015-JoT}---and compute each term at $X/D = 1$ to compare
 with the experimental results.
 
 \begin{figure}[ht]
+    \centering
+    
     \includegraphics[width=0.9\textwidth]{figures/mom_bar_graph}
+    
     \caption{Weighted sum normalized momentum recovery terms for each CFD case
-        and experiments\cite{Bachant2015-JoT} at $x/D=1$.} \label{fig:recovery}
+        and experiments\cite{Bachant2015-JoT} at $x/D=1$.}
+    
+    \label{fig:recovery}
 \end{figure}
 
 
