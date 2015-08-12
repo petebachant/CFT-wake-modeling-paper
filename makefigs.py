@@ -46,9 +46,6 @@ U = 1.0
 D = 1.0
 nu = 1e-6
 
-save = True
-savetype = ".pdf"
-
 def load_exp_data():
     """Loads section of exp wake data for U_infty=1.0 m/s."""
     return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
@@ -307,13 +304,16 @@ if __name__ == "__main__":
     set_sns()
     plt.rcParams["axes.grid"] = True
     
+    save = True
+    savetype = ".pdf"
+    
 #    plot_exp_perf_curve()
 #    plot_exp_meancontquiv()
 #    plot_cfd_meancontquiv("kOmegaSST")
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
-#    plot_verification()
+    plot_verification()
 #    plot_profiles()
 #    make_perf_bar_charts()
-    make_recovery_bar_chart()
+#    make_recovery_bar_chart()
     plt.show()
