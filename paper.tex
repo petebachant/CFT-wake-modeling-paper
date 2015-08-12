@@ -194,29 +194,33 @@ The $k$--$\omega$ SST and Spalart--Allmaras RANS model cases were verified for
 convergence of the turbine mean power coefficient with respect to grid spacing
 and timestep. The grid topology was fixed, but the number of cells per unit
 length were scaled proportionally, maintaining the same background mesh cell
-aspect ratio. Results for this parameter sweep are shown in 
+aspect ratio. Results for this parameter sweep are shown in
 Figure~\ref{fig:spatial-grid-dep}, from which the final number of streamwise
-grid points $N_x = 70$ was chosen. This corresponds to a total cell count of approximately $5 \times 10^4$ for the 2-D cases and 
-\todo[inline]{Get total cell count for 3-D case.}
+grid points $N_x = 70$ was chosen. This corresponds to a total cell count of
+approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
 
 \begin{figure}[ht]
-\caption{Spatial grid dependence for the SST (a) and Spalart--Allmaras (b) 
-turbulence models for fixed timesteps.}
-\label{fig:spatial-grid-dep}
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/verification} 
+    
+    \caption{Time step (left) and grid size (right) dependence for the 2-D case
+        with both the SST and SA turbulence models. Time step dependence was carried
+        out with $N_x=70$ and grid size dependence with the time steps annotated for
+        each turbulence model.}
+    
+    \label{fig:spatial-grid-dep}
 \end{figure}
 
-Timestep dependence was studied using the $N_x=70$ grid, the results from which
+Time step dependence was studied using the $N_x=70$ grid, the results from which
 are shown in Figure~\ref{fig:timestep-dep}. It was seen that the
-Spalart--Allmaras model converged well with decreasing timestep, leading to a
-final timestep of 0.001 s. The results from the SST model show a local minimum,
-at $\Delta t = 0.002$ s, which was the final timestep chosen to run the
+Spalart--Allmaras model converged well with decreasing time step, leading to a
+final time step of 0.001 s. The results from the SST model show a local minimum,
+at $\Delta t = 0.002$ s, which was the final time step chosen to run the
 simulations.
 
-\begin{figure}[ht]
-\caption{Spatial grid dependence for the SST (a) and Spalart--Allmaras (b) 
-turbulence models for a grid with $N_x=70$.}
-\label{fig:timestep-dep}
-\end{figure}
+\todo[inline]{Find some examples in the literature where time steps are much
+    larger.}
 
 \section{Model validation}
 
