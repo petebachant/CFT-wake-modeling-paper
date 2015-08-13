@@ -50,14 +50,24 @@ def load_exp_data():
     """Loads section of exp wake data for U_infty=1.0 m/s."""
     return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
                                     "Wake-1.0.csv"))
+                                    
+def load_exp_perf_data():
+    """Loads section of exp perf data for U_infty=1.0 m/s."""
+    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
+                                    "Perf-1.0.csv"))
 
-def plot_exp_perf_curve():
-    os.chdir(exp_dir)
-    import Modules.plotting as plotting_exp
-    plotting_exp.plot_cp_curve(1.0, show=False)
-    os.chdir(paper_dir)
+def plot_exp_perf():
+    df = load_exp_perf_data()
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 3))
+    ax[0].plot(df.mean_tsr, df.mean_cp, "-o")
+    ax[0].set_ylabel(r"$C_P$")
+    ax[1].plot(df.mean_tsr, df.mean_cd, "-o")
+    ax[1].set_ylabel(r"$C_D$")
+    for a in ax:
+        a.set_xlabel(r"$\lambda$")
+    fig.tight_layout()
     if save:
-        plt.savefig("figures/perf_curve_exp" + savetype)
+        fig.savefig("figures/exp_perf" + savetype)
     
 def plot_exp_meancontquiv():
     os.chdir(exp_dir)
@@ -314,13 +324,13 @@ if __name__ == "__main__":
     save = True
     savetype = ".pdf"
     
-#    plot_exp_perf_curve()
+    plot_exp_perf()
 #    plot_exp_meancontquiv()
 #    plot_cfd_meancontquiv("kOmegaSST")
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
-    plot_profiles()
+#    plot_profiles()
 #    make_perf_bar_charts()
 #    make_recovery_bar_chart()
     plt.show()
