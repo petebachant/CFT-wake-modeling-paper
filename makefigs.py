@@ -147,19 +147,26 @@ def plot_profiles():
     # Load data from 2-D SA case
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
     df = sa2dpr.load_u_profile()
-    ax[0].plot(df.y_R, df.u, "--", label="SA (2-D)")
+    ax[0].plot(df.y_R, df.u, "-.", label="SA (2-D)")
     df = sa2dpr.load_k_profile()
-    ax[1].plot(df.y_R, df.k_total, "--", label="SA (2-D)")
+    ax[1].plot(df.y_R, df.k_total, "-.", label="SA (2-D)")
+    # Load data from 3-D SST case
+    os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
+    df = sst3dpr.load_u_profile()
+    ax[0].plot(df.y_R, df.u, "--", label="SST (3-D)")
+    df = sa3dpr.load_k_profile()
+    ax[1].plot(df.y_R, df.k_total, "--", label="SST (3-D)")
     # Load data from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
     df = sa3dpr.load_u_profile()
-    ax[0].plot(df.y_R, df.u, "-.", label="SA (3-D)")
+    ax[0].plot(df.y_R, df.u, ":", label="SA (3-D)")
     df = sa3dpr.load_k_profile()
-    ax[1].plot(df.y_R, df.k_total, "-.", label="SA (3-D)")
+    ax[1].plot(df.y_R, df.k_total, ":", label="SA (3-D)")
     # Load data from experiment
     df = load_exp_data()
-    ax[0].plot(df.y_R, df.mean_u, "--o", label="Exp.")
-    ax[1].plot(df.y_R, df.k, "--o", label="Exp.")
+    df = df[df.z_H == 0]
+    ax[0].plot(df.y_R, df.mean_u, "o", label="Exp.", markerfacecolor="none")
+    ax[1].plot(df.y_R, df.k, "o", label="Exp.", markerfacecolor="none")
     # Set legend and labels
     ax[1].legend(loc="best")
     for a in ax: a.set_xlabel("$y/R$")
@@ -312,8 +319,8 @@ if __name__ == "__main__":
 #    plot_cfd_meancontquiv("kOmegaSST")
 #    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
-    plot_verification()
-#    plot_profiles()
+#    plot_verification()
+    plot_profiles()
 #    make_perf_bar_charts()
 #    make_recovery_bar_chart()
     plt.show()
