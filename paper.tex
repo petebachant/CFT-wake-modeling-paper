@@ -19,7 +19,7 @@
 
 \begin{document}
 
-% Use the \preprint command to place your local institutional report number 
+% Use the \preprint command to place your local institutional report number
 % on the title page in preprint mode.
 % Multiple \preprint commands are allowed.
 \preprint{}
@@ -28,11 +28,11 @@
 
 % repeat the \author .. \affiliation  etc. as needed
 % \email, \thanks, \homepage, \altaffiliation all apply to the current author.
-% Explanatory text should go in the []'s, 
+% Explanatory text should go in the []'s,
 % actual e-mail address or url should go in the {}'s for \email and \homepage.
 % Please use the appropriate macro for the type of information
 
-% \affiliation command applies to all authors since the last \affiliation command. 
+% \affiliation command applies to all authors since the last \affiliation command.
 % The \affiliation command should follow the other information.
 
 \author{Peter Bachant}
@@ -40,10 +40,10 @@
 %\homepage[]{Your web page}
 %\thanks{}
 %\altaffiliation{}
-\affiliation{Center for Ocean Renewable Energy, University of New Hampshire, 
+\affiliation{Center for Ocean Renewable Energy, University of New Hampshire,
 Durham, NH}
 
-\author{Martin Wosnik} 
+\author{Martin Wosnik}
 %\email[]{}
 %\homepage[]{Your web page}
 %\thanks{}
@@ -97,7 +97,7 @@ originate and help develop low-order wake generator models for use in turbine
 array modeling. For example, Araya et al. modeled the flow through a VAT array
 using leaky Rankine bodies \cite{Araya2014}. Shamsoddin and Porte-Agel modeled a
 2-D CFT using large eddy simulation (LES) with an actuator line approach to
-impart force on the flow field \cite{Shamsoddin2014}. 
+impart force on the flow field \cite{Shamsoddin2014}.
 
 Goude and Agren used a 2-D vortex method to simulate a farm of cross-flow
 turbines \cite{Goude2010}. Durrani et al. used 2-D CFD to model a group of
@@ -112,7 +112,7 @@ Questions addressed:
 
     \item Does 3-D RANS tell us more about what is happening, i.e, can it
     ``interpolate'' the experimental results?
-    
+
     \item Does 3-D RANS realize the proper wake recovery proportions? This would
     imply it could be a very accurate model if used in DES.
 
@@ -140,12 +140,12 @@ $\lambda=1.9$, which corresponds to the maximum power coefficient.
 
 \begin{figure}[ht]
     \centering
-    
-    \includegraphics[width=0.9\textwidth]{figures/exp_perf} 
-    
+
+    \includegraphics[width=0.9\textwidth]{figures/exp_perf}
+
     \caption{Mean rotor power (left) and drag (right) coefficient curves from
         the tow tank experiments\cite{Bachant2015-RVAT-Re-dep-data}.}
-    
+
     \label{fig:exp_perf}
 \end{figure}
 
@@ -199,12 +199,12 @@ open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
 \subsection{Initial and boundary conditions}
 
 Initial and boundary conditions were set to match those of the tow tank as well
-as possible. 
+as possible.
 
 For the SA model, the turbulence transport variable $\tilde{\nu}$, is ideally
 zero in the free stream \cite{Spalart1992}, though others recommend using
 $\tilde{\nu}/\nu \approx 3$--$5$ for fully turbulent simulations
-\cite{Spalart2007}. 
+\cite{Spalart2007}.
 
 \section{Model verification}
 
@@ -219,14 +219,14 @@ approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
 
 \begin{figure}[ht]
     \centering
-    
-    \includegraphics[width=0.9\textwidth]{figures/verification} 
-    
+
+    \includegraphics[width=0.9\textwidth]{figures/verification}
+
     \caption{Time step (left) and grid size (right) dependence for the 2-D case
         with both the SST and SA turbulence models. Time step dependence was carried
         out with $N_x=70$ and grid size dependence with the time steps annotated for
         each turbulence model.}
-    
+
     \label{fig:verification}
 \end{figure}
 
@@ -269,12 +269,12 @@ change as well.
 
 \begin{figure}[ht]
     \centering
-    
-    \includegraphics[width=0.9\textwidth]{figures/perf_bar_chart} 
-    
+
+    \includegraphics[width=0.9\textwidth]{figures/perf_bar_chart}
+
     \caption{Power (left) and drag (right) coefficient predictions from
         experiments and each numerical model.}
-    
+
     \label{fig:perf-comp}
 \end{figure}
 
@@ -288,22 +288,22 @@ blockage ratio.
 
 \begin{figure}
     \centering
-    
-    \includegraphics[width=0.95\textwidth]{figures/profiles} 
-    
+
+    \includegraphics[width=0.95\textwidth]{figures/profiles}
+
     \caption{Mean velocity (left) and turbulence kinetic energy (right) profiles
         at $x/D=1$ from 2-D simulations, 3-D simulations ($z/H=0$), and experiments
         \cite{Bachant2015-JoT}.}
-    
+
     \label{fig:profiles}
 \end{figure}
 
 Turbulence kinetic energy profiles are also shown in Figure~\ref{fig:profiles}.
 The turbulence kinetic energy is calculated as
 \begin{equation}
-    k = k_{\mathrm{RA}} + \frac{1}{2} \left( 
-    \overline{U^\prime}^2 + 
-    \overline{V^\prime}^2 + 
+    k = k_{\mathrm{RA}} + \frac{1}{2} \left(
+    \overline{U^\prime}^2 +
+    \overline{V^\prime}^2 +
     \overline{W^\prime}^2 \right),
     \label{eq:k}
 \end{equation}
@@ -325,12 +325,12 @@ with the experimental results.
 
 \begin{figure}[ht]
     \centering
-    
+
     \includegraphics[width=0.9\textwidth]{figures/mom_bar_graph}
-    
+
     \caption{Weighted sum normalized momentum recovery terms for each CFD case
         and experiments\cite{Bachant2015-JoT} at $x/D=1$.}
-    
+
     \label{fig:recovery}
 \end{figure}
 
