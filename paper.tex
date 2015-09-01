@@ -222,7 +222,10 @@ open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
 \subsection{Initial and boundary conditions}
 
 Initial and boundary conditions were set to match those of the tow tank as well
-as possible.
+as possible. The velocity at the bottom and side walls was fixed to 1 m/s to
+match the tow tank case, while the top boundary condition was a slip velocity
+condition. Note that in 2-D the top and bottom boundary conditions are
+``empty,'' which is an OpenFOAM convention.
 
 For the SA model, the turbulence transport variable $\tilde{\nu}$, is ideally
 zero in the free stream \cite{Spalart1992}, though others recommend using
