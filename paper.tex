@@ -84,11 +84,14 @@ design tool and a way to ``interpolate'' experimental flow field measurements.
 \section{Introduction}
 
 Computational fluid dynamics (CFD) presents an attractive method for simulating
-cross-flow turbines since it only requires turbulence modeling, i.e., the
+cross-flow turbines (CFTs) since it only requires turbulence modeling, i.e., the
 machine is described from first principles. However, CFD can be computationally
 expensive when done in three dimensions, which may be necessary in some cases.
 There are many examples in the literature of 2-D cross-flow turbine simulations
-with widely varying results.
+with widely varying results. Balduzzi et al. provides a summary of recent
+computations and an attempt to standardize a methodology for using
+Reynolds-averaged Navier--Stokes (RANS) to correctly simulate performance of a
+2-D CFT \cite{Balduzzi2016}.
 
 In this study we set out to model the wake of the University of New Hampshire's
 Reference Vertical-Axis (cross-flow) Turbine (UNH-RVAT) using a
@@ -158,7 +161,11 @@ Goals:
 In this study we seek to predict the near-wake of the UNH-RVAT turbine,
 experimental performance curves for which are shown in
 Figure~\ref{fig:exp_perf}. We modeled the turbine at a tip speed ratio
-$\lambda=1.9$, which corresponds to the maximum power coefficient.
+$\lambda=1.9$, which corresponds to the maximum power coefficient, and a turbine
+diameter Reynolds number $Re_D \approx 10^6$, which corresponds to a
+$Re$-independent state for both performance and near-wake characteristics, as
+determined from experimental measurements \cite{Bachant2014,
+    Bachant2015-RVAT-Re-dep}.
 
 
 \begin{figure}[ht]
