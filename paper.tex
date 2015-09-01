@@ -193,7 +193,9 @@ centered vertically with a vertical axis. with a cylindrical sliding mesh
 interface, where the turbine zone rotates at a mean tip speed ratio
 $\lambda=1.9$ with a sinusoidal oscillation at the blade passage
 frequency---with and amplitude of 0.19 and the first peak at 0.7 radians---to
-mimic the experimental data. The 2-D mesh is shown in Figure~\ref{fig:mesh}.
+mimic the experimental data. The 2-D mesh overview is shown in
+Figure~\ref{fig:mesh} and the blade mesh is shown in
+Figure~\ref{fig:blade-mesh}.
 
 Meshes were generated using \textit{OpenFOAM}'s \textit{blockMesh} and
 \textit{snappyHexMesh} utilities. Mesh topology consists of a background
@@ -210,9 +212,18 @@ of cells in the streamwise direction, $N_x$.
 \cite{Bachant2014-RVAT-CAD}.
 
 \begin{figure}[ht]
-\caption{Snapshot of the 2-D computational mesh.}
-\label{fig:mesh}
+    \caption{Overview of the 2-D computational mesh.} 
+    
+    \label{fig:mesh}
 \end{figure}
+
+
+\begin{figure}[ht]
+    \caption{Detailed view of the 2-D computational mesh near the blades.}
+    
+    \label{fig:blade-mesh}
+\end{figure}
+
 
 \subsection{Software}
 
