@@ -14,6 +14,7 @@
 \documentclass[aip,graphicx]{revtex4-1}
 %\documentclass[aip,reprint]{revtex4-1}
 \usepackage[draft]{todonotes}
+\usepackage{subcaption}
 
 \draft % marks overfull lines with a black rule on the right
 
@@ -430,6 +431,36 @@ original velocity will be negligible.
 \subsubsection{Mean velocity in three dimensions}
 
 % In this section, show mean velocity contours/quivers
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[clip, trim=0 0.1in 0 0.2in,
+        width=0.75\textwidth]{figures/meancontquiv_exp} \caption{Mean velocity
+            field at $x/D=1$ from experiments \cite{Bachant2015-RVAT-Re-dep-data}.}
+        \label{fig:meancontquiv-exp}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[clip, trim=0 0.2in 0 0.15in,
+        width=0.8\textwidth]{figures/meancontquiv_kOmegaSST} \caption{Mean
+            velocity at $x/D=1$ computed by the 3-D SST model.}
+        \label{fig:meancontquiv-SST}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[clip, trim=0 0.2in 0 0.15in,
+        width=0.8\textwidth]{figures/meancontquiv_SpalartAllmaras} \caption{Mean
+            velocity at $x/D=1$ computed by the 3-D SA model.}
+        \label{fig:meancontquiv-SA}
+    \end{subfigure}
+
+    \caption{Mean velocity from experiments and 3-D CFD cases. Solid gray lines
+        indicate turbine frontal area and dashed lines indicate experimental
+        measurement plane.}
+    
+    \label{fig:mean-velocity}
+\end{figure}
 
 
 \subsubsection{Turbulence kinetic energy contours}
