@@ -100,6 +100,17 @@ def plot_cfd_meancontquiv(case="kOmegaSST"):
     if save:
          plt.savefig("figures/meancontquiv_" + case + savetype)
          
+def plot_cfd_kcont(case="kOmegaSST"):
+    """Plot TKE from 3-D CFD case."""
+    os.chdir(cfd_dirs["3-D"][case])
+    if case == "SpalartAllmaras":
+        sa3dpl.plot_kcont()
+    elif case == "kOmegaSST":
+        sst3dpl.plot_kcont()
+    os.chdir(paper_dir)
+    if save:
+         plt.savefig("figures/kcont_" + case + savetype)
+         
 def plot_cfd_u_profile(case="kOmegaSST", dims="2-D"):
     """Plot mean streamwise velocity profile."""
     os.chdir(cfd_dirs[dims][case])
@@ -346,5 +357,7 @@ if __name__ == "__main__":
 #    make_perf_bar_charts()
 #    make_recovery_bar_chart()
     plot_exp_kcont()
+    plot_cfd_kcont("kOmegaSST")
+#    plot_cfd_kcont("SpalartAllmaras")
 
     plt.show()
