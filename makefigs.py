@@ -30,15 +30,18 @@ sst2dpr = SourceFileLoader("sst2dpr",
 sa2dpr = SourceFileLoader("sa2dpr", 
                   os.path.join(cfd_dirs["2-D"]["SpalartAllmaras"],
                   "modules", "processing.py")).load_module()
-sa3dpr = SourceFileLoader("sa3dpr", 
+sa3dpr = SourceFileLoader("modules.processing", 
                   os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
                   "modules", "processing.py")).load_module()
-#sa3dpl = SourceFileLoader("sa3dpl", 
-#                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
-#                  "modules", "plotting.py")).load_module()
-sst3dpr = SourceFileLoader("sst3dpr", 
+sa3dpl = SourceFileLoader("sa3dpl", 
+                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
+                  "modules", "plotting.py")).load_module()
+sst3dpr = SourceFileLoader("modules.processing", 
                   os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
                   "modules", "processing.py")).load_module()
+sst3dpl = SourceFileLoader("sst3dpl", 
+                  os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
+                  "modules", "plotting.py")).load_module()
 #exppr = SourceFileLoader("exppl", os.path.join(exp_dir, "Modules", 
 #                         "plotting.py")).load_module()
                          
@@ -324,10 +327,10 @@ if __name__ == "__main__":
     save = True
     savetype = ".pdf"
     
-    plot_exp_perf()
-#    plot_exp_meancontquiv()
-#    plot_cfd_meancontquiv("kOmegaSST")
-#    plot_cfd_meancontquiv("SpalartAllmaras")
+#    plot_exp_perf()
+    plot_exp_meancontquiv()
+    plot_cfd_meancontquiv("kOmegaSST")
+    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
 #    plot_profiles()
