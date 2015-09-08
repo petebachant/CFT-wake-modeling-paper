@@ -79,6 +79,15 @@ def plot_exp_meancontquiv():
     os.chdir(paper_dir)
     if save:
         plt.savefig("figures/meancontquiv_exp" + savetype)
+        
+def plot_exp_kcont():
+    os.chdir(exp_dir)
+    import Modules.plotting as plotting_exp
+    wm = plotting_exp.WakeMap(1.0)
+    wm.plot_k()
+    os.chdir(paper_dir)
+    if save:
+        plt.savefig("figures/kcont_exp" + savetype)
 
 def plot_cfd_meancontquiv(case="kOmegaSST"):
     """Plots wake mean velocity contours/quivers from 3-D CFD case."""
@@ -328,12 +337,14 @@ if __name__ == "__main__":
     savetype = ".pdf"
     
 #    plot_exp_perf()
-    plot_exp_meancontquiv()
-    plot_cfd_meancontquiv("kOmegaSST")
-    plot_cfd_meancontquiv("SpalartAllmaras")
+#    plot_exp_meancontquiv()
+#    plot_cfd_meancontquiv("kOmegaSST")
+#    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
 #    plot_profiles()
 #    make_perf_bar_charts()
 #    make_recovery_bar_chart()
+    plot_exp_kcont()
+
     plt.show()
