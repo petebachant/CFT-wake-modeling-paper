@@ -326,9 +326,7 @@ def make_recovery_bar_chart():
     ax.set_ylabel(r"$\frac{U \, \mathrm{ transport} \times A_c}"
                   "{UU_\infty D^{-1}}$")
     ax.legend(loc="best", ncol=1)
-    fig.tight_layout()
-
-    
+    fig.tight_layout()    
     os.chdir(paper_dir)
     if save:
         fig.savefig("figures/mom_bar_graph"+savetype)
@@ -349,15 +347,15 @@ if __name__ == "__main__":
     
 #    plot_exp_perf()
 #    plot_exp_meancontquiv()
-#    plot_cfd_meancontquiv("kOmegaSST")
-#    plot_cfd_meancontquiv("SpalartAllmaras")
+    plot_cfd_meancontquiv("kOmegaSST")
+    plot_cfd_meancontquiv("SpalartAllmaras")
 #    plot_cfd_u_profile()
 #    plot_verification()
 #    plot_profiles()
 #    make_perf_bar_charts()
 #    make_recovery_bar_chart()
-    plot_exp_kcont()
-    plot_cfd_kcont("kOmegaSST")
+#    plot_exp_kcont()
+#    plot_cfd_kcont("kOmegaSST")
 #    plot_cfd_kcont("SpalartAllmaras")
 
     plt.show()
