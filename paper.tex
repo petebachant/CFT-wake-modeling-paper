@@ -394,9 +394,9 @@ wake dynamics.
 
 
 Mean velocity profiles at one turbine diameter downstream are shown in
-Figure~\ref{fig:profiles}. The 2-D results suffer from a blockage
-mismatch, i.e. keeping the proximity of the walls constant increases the
-blockage ratio.
+Figure~\ref{fig:profiles}. The 2-D results suffer from a blockage mismatch, i.e.
+keeping the proximity of the walls constant increases the blockage ratio. The
+3-D results, however, show good agreement with the experiments.
 
 \begin{figure}
     \centering
@@ -425,6 +425,17 @@ the statistics of the Reynolds-averaged velocity are calculated from a time
 series that has been downsampled to 50 Hz. It is assumed that this is far enough
 from the blade passage frequency that differences from the variance in the
 original velocity will be negligible.
+
+Both Spalart--Allmaras cases do a poor job predicting the turbulence kinetic
+energy in the flow, since it must be resolved as variance in the velocity field.
+The 2-D SST model does a good job predicting the peak in $k$ at $y/R=-1$, though
+is missing the smaller peak at $y/R=-1$. This is once again likely due to
+blockage issues, where local tip speed ratio is decreased, increasing the
+blades' instantaneous angle of attack at this location on the downstream
+passage. In contrast, the 3-D SST model predicts the $+y$ peak in turbulence
+kinetic energy very well, though the $-y$ peak magnitude is overpredicted by
+about 30\%. We also see some smearing of $k$ across the center of the rotor,
+which is likely due to exaggerated levels of the turbulent eddy viscosity.
 
 
 \subsubsection{Mean velocity in three dimensions}
