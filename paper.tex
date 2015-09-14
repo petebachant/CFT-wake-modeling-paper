@@ -554,6 +554,46 @@ $\partial U / \partial x$---following Bachant and
 Wosnik\cite{Bachant2015-JoT}---and compute each term at $X/D = 1$ to compare
 with the experimental results.
 
+We use the RANS models' eddy viscosity to calculate the turbulent transport via
+\begin{equation}
+    \text{Turb. trans.} = \nu_t \nabla^2 \vec{U},
+    \label{eq:turb-trans}
+\end{equation}
+which is a different approach from those taken on the experiments, where Reynolds stresses were measured, but $x$-derivatives were not:
+\begin{equation}
+    \text{Turb. trans. (exp.)} = 
+    -\left( 
+    \frac{\partial}{\partial y} \overline{u^\prime v^\prime}
+    +
+    \frac{\partial}{\partial z} \overline{u^\prime w^\prime}
+    \right).
+\end{equation}
+As such, we should not be surprised if the CFD models predict higher levels of
+turbulent transport than the experiments.
+
+Normalized weighted averages for each recovery term at $x/D=1$ are computed and
+multiplied by the cross-sectional area of the measurement plane, or the channel
+width in the 2-D cases. Results are shown in a bar chart in
+Figure~\ref{fig:recovery}. Consistent with the relatively large Reynolds number
+regime, viscous transport is essentially negligible compared with other
+mechanisms. Cross-stream advection---or the tendency of streamlines to diverge
+and reduce the streamwise momentum---produces a negative effect for all cases,
+though the 3-D SST model predicts significantly lower values. Vertical advection
+is by definition zero for the 2-D cases. The 3-D cases show varying
+results---with the SST model overpredicting and SA underpredicting the vertical
+velocity's effect on replenishing streamwise momentum.
+
+Turbulent transport and streamwise pressure gradient terms show the largest
+discrepancy between results. The 3-D SST case, despite doing a good job
+predicting turbulence kinetic energy, significantly overpredicts the turbulent
+transport term, while other CFD cases are comparable with the experiment. This
+seems to be balanced by a large adverse pressure gradient, which is also present
+to a smaller degree in the 3-D SA case. Interestingly, in contrast, both 2-D CFD
+cases create a wake where the pressure gradient is acting to accelerate the flow
+at $x/D=1$. Unfortunately, pressure data were not acquired from the experiment,
+though the 3-D delayed detached eddy simulation (DDES) of Boudreau and Dumas
+\cite{Boudreau2015} concur with the adverse pressure gradient condition.
+
 \begin{figure}[ht]
     \centering
 
