@@ -315,12 +315,15 @@ approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
 Time step dependence was studied using the $N_x=70$ grid, the results from which
 are shown in Figure~\ref{fig:verification}. It was seen that the
 Spalart--Allmaras model converged well with decreasing time step, leading to a
-final time step of 0.001 s. The results from the SST model show a local minimum,
-at $\Delta t = 0.002$ s, which was the final time step chosen to run the
-simulations.
+final time step of 0.001 s. The results from the SST model show a local minimum
+at $\Delta t = 0.002$ s, with some divergence for smaller time steps. The local
+minimum was chosen as the final time step to run the simulations. Note that the
+SST model's convergence behavior may be due to its specific implementation in
+\textit{OpenFOAM}, and not indicative of the nature of the model equations.
+Verification studies for CFTs with this level of detail in the literature are
+not common, though the final time step is comparable to others
+\cite{Balduzzi2016}.
 
-\todo[inline]{Find some examples in the literature where time steps are much
-    larger.}
 
 \section{Model validation}
 
