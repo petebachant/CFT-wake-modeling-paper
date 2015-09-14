@@ -112,71 +112,74 @@ results. Balduzzi et al. provides a summary of recent computations and an
 attempt to standardize a methodology for using Reynolds-averaged Navier--Stokes
 (RANS) to correctly simulate performance of a 2-D CFT \cite{Balduzzi2016}.
 
-In this study we set out to model the wake of the University of New Hampshire's
-Reference Vertical-Axis (cross-flow) Turbine (UNH-RVAT) using a
-Reynolds-averaged Navier--Stokes numerical model.
-
-Note that studies in the literature generally focus on predicting the turbine
-loading and the local blade flow rather than the turbine wake. In contrast, we
-seek to model the near-wake flow.
-
-It has been shown that the momentum and energy transport processes in the
-near-wake of a high-solidity, low aspect ratio vertical-axis turbine are
-dominated by vertical advection \cite{Bachant2015-JoT}. It logically follows
-that a 2-D simulation would not correctly predict wake recovery, but is of
-interest to what extent this is true, since the computational feasibility of 2-D
-simulations is attractive.
-
 Modeling the boundary layer flows on cross-flow turbine blades is very
 challenging due to the dynamically changing inflow and angle of attack---which
 often exceeds static stall values and causes dynamic stall. Furthermore, the
 ability to predict the occurrence and interdependence of boundary layer
 transition and separation can have dramatic influence on the blade loading and
-therefore the predicted turbine power output.
+therefore the predicted turbine power output. These challenges cast significant
+doubt on the ability of high-fidelity CFD modeling to replace wind tunnel or
+tank testing of physical models.
+
+\todo[inline]{Put survey of CFD accuracy here}
+
+In this study we set out to model the wake of the University of New Hampshire's
+Reference Vertical-Axis (cross-flow) Turbine (UNH-RVAT) using a
+Reynolds-averaged Navier--Stokes numerical model. Note that studies in the
+literature generally focus on predicting the turbine loading and the local blade
+flow rather than the turbine wake. In contrast, we seek to model the near-wake
+flow.
+
+The wake of this particular turbine is of interest since it has been shown that
+the neark-wake's momentum and energy transport processes are dominated by
+vertical advection \cite{Bachant2015-JoT}. It logically follows that a 2-D
+simulation would not correctly predict wake recovery, but is of interest to what
+extent this is true, since the computational feasibility of 2-D simulations is
+attractive.
 
 It is assumed that if the turbine power output and near-wake predictions from
-the numerical model match those of the experiments, that the flow field can be
+the numerical model match those of the experiments, the flow field can be
 inspected in greater detail, i.e., that the experiments will have been
 ``interpolated''. This will give us access to unmeasured quantities, e.g.
 pressure, and allow us to see where the dominant flow structures originate and
 help develop low-order wake generator models for use in turbine array modeling.
-For example, Araya et al. modeled the flow through a VAT array using leaky
-Rankine bodies \cite{Araya2014}. Shamsoddin and Porte-Agel modeled a 2-D CFT
-using large eddy simulation (LES) with an actuator line approach to impart force
-on the flow field \cite{Shamsoddin2014}.
+For example, Shamsoddin and Porte-Agel modeled a 2-D CFT using large eddy
+simulation (LES) with an actuator line approach to impart force on the flow
+field \cite{Shamsoddin2014}.
 
-Goude and Agren used a 2-D vortex method to simulate a farm of cross-flow
-turbines \cite{Goude2010}. Durrani et al. used 2-D CFD to model a group of
-cross-flow turbines, but did not compare with experimental results
-\cite{Durrani2011}.
+To date, little computational work has been done to attempt to design arrays of
+CFTs, despite their prospects for closer spacing compared with axial-flow
+turbines (AFTs). For example, Araya et al. modeled the flow through a VAT array
+using ``leaky Rankine body'' potential flow singularities \cite{Araya2014},
+which was able to rank relative performance of array configurations. Goude and
+Agren used a 2-D vortex method to simulate a farm of cross-flow turbines
+\cite{Goude2010}, though this was not validated with experiments. Durrani et al.
+used 2-D CFD to model a group of cross-flow turbines, observing higher power
+output for a staggered configuration, but also did not compare with experimental
+results \cite{Durrani2011}. Li and Calisal \cite{Li2010} used a 3-D vortex line
+method to show mutually improved power output from two adjacent turbines, though
+the simulations over-predicted the effects compared with experiments. Antheaume
+et al. \cite{Antheaume2008} used a blade element approach coupled with a 3-D
+RANS solver to also show how close spacing can improve power output of CFTs.
 
-Questions addressed:
-
-\begin{enumerate}
-
-    \item Can 2-D RANS be used for array design?
-
-    \item Does 3-D RANS tell us more about what is happening, i.e, can it
-    ``interpolate'' the experimental results?
-
-    \item Does 3-D RANS realize the proper wake recovery proportions? This would
-    imply it could be a very accurate model if used in DES.
-
-\end{enumerate}
-
-Goals:
+To summarize, the questions we hope to answer here are:
 
 \begin{enumerate}
 
-    \item Evaluate modern computational fluid dynamics techniques for predicting
-    the dynamic loading on cross-flow turbine blades.
+    \item Can or should 2-D RANS be used for array design?
+    
+    \item How accurately can 3-D RANS predict performance?
 
-    \item If possible, accurately predict the turbine from the perspective as a
-    wake generator, such that the results can be used to develop low-order
-    models.
+    \item Can 3-D RANS ``interpolate'' the experimental results and provide insight to develop new low-order wake generators to represent CFTs?
+
+    \item Does 3-D RANS realize the correct proportions of wake recovery
+    mechanisms, i.e., are the 3-D blade-resolved results a good ``target'' for
+    those from a low-order model?
 
 \end{enumerate}
 
+
+\section{Turbine description}
 
 In this study we seek to predict the near-wake of the UNH-RVAT turbine, shown in
 Figure~\ref{fig:RVAT-CAD}. Experimental performance curves for the UNH-RVAT are
