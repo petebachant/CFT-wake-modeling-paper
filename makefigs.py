@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-"""
-This script makes the figures for the CFT wake modeling paper.
-"""
+"""This script makes the figures for the CFT wake modeling paper."""
 
 from __future__ import print_function, division
 import matplotlib.pyplot as plt
@@ -10,56 +8,51 @@ from pxl.styleplot import set_sns
 import pxl.timeseries as ts
 import pandas as pd
 import numpy as np
-from importlib.machinery import SourceFileLoader
+import sys
 
 cfd_sst_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14"
-cfd_sa_dir = "/media/pete/Data2/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14-sa"
+cfd_sa_dir = "/media/Data2/OpenFOAM/pete-2.3.x/run/unh-rvat-3d/mesh14-sa"
 cfd_sst_2d_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-2d/kOmegaSST"
 cfd_sa_2d_dir = "/media/pete/Data1/OpenFOAM/pete-2.3.x/run/unh-rvat-2d/SpalartAllmaras"
 exp_dir = "/home/pete/Google Drive/Research/Experiments/RVAT Re dep"
 paper_dir = "/home/pete/Google Drive/Research/Papers/CFT wake modeling"
-cfd_dirs = {"3-D": {"kOmegaSST": cfd_sst_dir, 
+cfd_dirs = {"3-D": {"kOmegaSST": cfd_sst_dir,
                     "SpalartAllmaras": cfd_sa_dir},
-            "2-D": {"kOmegaSST": cfd_sst_2d_dir, 
+            "2-D": {"kOmegaSST": cfd_sst_2d_dir,
                     "SpalartAllmaras": cfd_sa_2d_dir}}
 
-# Import individual modules from each case
-sst2dpr = SourceFileLoader("sst2dpr", 
-                  os.path.join(cfd_dirs["2-D"]["kOmegaSST"],
-                  "modules", "processing.py")).load_module()
-sa2dpr = SourceFileLoader("sa2dpr", 
-                  os.path.join(cfd_dirs["2-D"]["SpalartAllmaras"],
-                  "modules", "processing.py")).load_module()
-sa3dpr = SourceFileLoader("modules.processing", 
-                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
-                  "modules", "processing.py")).load_module()
-sa3dpl = SourceFileLoader("sa3dpl", 
-                  os.path.join(cfd_dirs["3-D"]["SpalartAllmaras"],
-                  "modules", "plotting.py")).load_module()
-sst3dpr = SourceFileLoader("modules.processing", 
-                  os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
-                  "modules", "processing.py")).load_module()
-sst3dpl = SourceFileLoader("sst3dpl", 
-                  os.path.join(cfd_dirs["3-D"]["kOmegaSST"],
-                  "modules", "plotting.py")).load_module()
-#exppr = SourceFileLoader("exppl", os.path.join(exp_dir, "Modules", 
-#                         "plotting.py")).load_module()
-                         
+# Append directories to path so we can import their respective packages
+for d in [cfd_sst_dir, cfd_sa_dir, cfd_sst_2d_dir, cfd_sa_2d_dir, exp_dir]:
+    if not d in sys.path:
+        sys.path.append(d)
+
+import pyurof3dsst, pyurof3dsa, pyurof2dsst, pyurof2dsa, pyrvatrd
+import pyrvatrd.plotting
+
+cfd_packages = {"3-D": {"kOmegaSST": pyurof3dsst,
+                        "SpalartAllmaras": pyurof3dsa},
+                "2-D": {"kOmegaSST": pyurof2dsst,
+                        "SpalartAllmaras": pyurof2dsa}}
+
+
 U = 1.0
 D = 1.0
 nu = 1e-6
 
+
 def load_exp_data():
     """Loads section of exp wake data for U_infty=1.0 m/s."""
-    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
+    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed",
                                     "Wake-1.0.csv"))
-                                    
+
+
 def load_exp_perf_data():
     """Loads section of exp perf data for U_infty=1.0 m/s."""
-    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed", 
+    return pd.read_csv(os.path.join(exp_dir, "Data", "Processed",
                                     "Perf-1.0.csv"))
 
-def plot_exp_perf():
+
+def plot_exp_perf(save=False):
     df = load_exp_perf_data()
     fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 3))
     ax[0].plot(df.mean_tsr, df.mean_cp, "-o")
@@ -71,53 +64,50 @@ def plot_exp_perf():
     fig.tight_layout()
     if save:
         fig.savefig("figures/exp_perf" + savetype)
-    
-def plot_exp_meancontquiv():
+
+
+def plot_exp_meancontquiv(save=False):
     os.chdir(exp_dir)
-    import Modules.plotting as plotting_exp
-    plotting_exp.plot_meancontquiv(1.0)
+    pyrvatrd.plotting.plot_meancontquiv(1.0)
     os.chdir(paper_dir)
     if save:
         plt.savefig("figures/meancontquiv_exp" + savetype)
-        
-def plot_exp_kcont():
+
+
+def plot_exp_kcont(save=False):
     os.chdir(exp_dir)
-    import Modules.plotting as plotting_exp
-    wm = plotting_exp.WakeMap(1.0)
+    wm = pyrvatrd.plotting.WakeMap(1.0)
     wm.plot_k()
     os.chdir(paper_dir)
     if save:
         plt.savefig("figures/kcont_exp" + savetype)
 
-def plot_cfd_meancontquiv(case="kOmegaSST"):
+
+def plot_cfd_meancontquiv(case="kOmegaSST", save=False):
     """Plots wake mean velocity contours/quivers from 3-D CFD case."""
     os.chdir(cfd_dirs["3-D"][case])
-    if case == "SpalartAllmaras":
-        sa3dpl.plot_meancontquiv()
-    elif case == "kOmegaSST":
-        sst3dpl.plot_meancontquiv()
+    cfd_packages["3-D"][case].plotting.plot_meancontquiv()
     os.chdir(paper_dir)
     if save:
          plt.savefig("figures/meancontquiv_" + case + savetype)
-         
-def plot_cfd_kcont(case="kOmegaSST"):
+
+
+def plot_cfd_kcont(case="kOmegaSST", save=False):
     """Plot TKE from 3-D CFD case."""
     os.chdir(cfd_dirs["3-D"][case])
-    if case == "SpalartAllmaras":
-        sa3dpl.plot_kcont()
-    elif case == "kOmegaSST":
-        sst3dpl.plot_kcont()
+    cfd_packages["3-D"][case].plotting.plot_kcont()
     os.chdir(paper_dir)
     if save:
          plt.savefig("figures/kcont_" + case + savetype)
-         
+
+
 def plot_cfd_u_profile(case="kOmegaSST", dims="2-D"):
     """Plot mean streamwise velocity profile."""
     os.chdir(cfd_dirs[dims][case])
-    import modules.plotting as plotting_cfd
-    plotting_cfd.plot_u()
+    cfd_packages[dims][case].plotting.plot_u()
     os.chdir(paper_dir)
-    
+
+
 def deltat_to_steps_per_rev(deltat):
     """Convert deltaT to stepsPerRev."""
     tsr = 1.9
@@ -128,15 +118,16 @@ def deltat_to_steps_per_rev(deltat):
     sec_per_step = deltat
     step_per_rev = sec_per_step**(-1)*rev_per_sec**(-1)
     return step_per_rev
-    
-def plot_verification():
+
+
+def plot_verification(save=False):
     """Create verification figure."""
-    p = os.path.join(cfd_dirs["2-D"]["SpalartAllmaras"], "processed", 
+    p = os.path.join(cfd_dirs["2-D"]["SpalartAllmaras"], "processed",
                      "timestep_dep.csv")
     df_ts_sa = pd.read_csv(p)
     df_nx_sa = pd.read_csv(p.replace("timestep_dep", "spatial_grid_dep"))
     df_nx_sa.sort("nx", inplace=True)
-    p = os.path.join(cfd_dirs["2-D"]["kOmegaSST"], "processed", 
+    p = os.path.join(cfd_dirs["2-D"]["kOmegaSST"], "processed",
                      "timestep_dep.csv")
     df_ts_sst = pd.read_csv(p)
     df_nx_sst = pd.read_csv(p.replace("timestep_dep", "spatial_grid_dep"))
@@ -167,33 +158,34 @@ def plot_verification():
     fig.tight_layout()
     if save:
         fig.savefig("figures/verification" + savetype)
-        
-def plot_profiles():
+
+
+def plot_profiles(save=False):
     """Plot streamwise velocity and TKE profiles for all cases."""
     fig, ax = plt.subplots(1, 2, figsize=(7.5, 3))
     # Load data from 2-D SST case
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
-    df = sst2dpr.load_u_profile()
+    df = pyurof2dsst.processing.load_u_profile()
     ax[0].plot(df.y_R, df.u, "-", label="SST (2-D)")
-    df = sst2dpr.load_k_profile()
+    df = pyurof2dsst.processing.load_k_profile()
     ax[1].plot(df.y_R, df.k_total, "-", label="SST (2-D)")
     # Load data from 2-D SA case
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
-    df = sa2dpr.load_u_profile()
+    df = pyurof2dsa.processing.load_u_profile()
     ax[0].plot(df.y_R, df.u, "-.", label="SA (2-D)")
-    df = sa2dpr.load_k_profile()
+    df = pyurof2dsa.processing.load_k_profile()
     ax[1].plot(df.y_R, df.k_total, "-.", label="SA (2-D)")
     # Load data from 3-D SST case
     os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
-    df = sst3dpr.load_u_profile()
+    df = pyurof3dsst.processing.load_u_profile()
     ax[0].plot(df.y_R, df.u, "--", label="SST (3-D)")
-    df = sa3dpr.load_k_profile()
+    df = pyurof3dsst.processing.load_k_profile()
     ax[1].plot(df.y_R, df.k_total, "--", label="SST (3-D)")
     # Load data from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
-    df = sa3dpr.load_u_profile()
+    df = pyurof3dsa.processing.load_u_profile()
     ax[0].plot(df.y_R, df.u, ":", label="SA (3-D)")
-    df = sa3dpr.load_k_profile()
+    df = pyurof3dsa.processing.load_k_profile()
     ax[1].plot(df.y_R, df.k_total, ":", label="SA (3-D)")
     # Load data from experiment
     df = load_exp_data()
@@ -210,8 +202,9 @@ def plot_profiles():
     os.chdir(paper_dir)
     if save:
         fig.savefig("figures/profiles" + savetype)
-        
-def make_perf_bar_charts():
+
+
+def make_perf_bar_charts(save=False):
     """Create bar charts for C_P and C_D for all cases."""
     cp = {}
     cd = {}
@@ -221,22 +214,22 @@ def make_perf_bar_charts():
     cd["Exp."] = df.mean_cd.mean()
     # Load performance from 2-D SST
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
-    perf = sst2dpr.calc_perf()
+    perf = pyurof2dsst.processing.calc_perf()
     cp["SST (2-D)"] = perf["C_P"]
     cd["SST (2-D)"] = perf["C_D"]
     # Load performance from 2-D SA
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
-    perf = sa2dpr.calc_perf()
+    perf = pyurof2dsa.processing.calc_perf()
     cp["SA (2-D)"] = perf["C_P"]
     cd["SA (2-D)"] = perf["C_D"]
     # Load performance from 3-D SST
     os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
-    perf = sst3dpr.calc_perf()
+    perf = pyurof3dsst.processing.calc_perf()
     cp["SST (3-D)"] = perf["C_P"]
     cd["SST (3-D)"] = perf["C_D"]
     # Load performance from 3-D SA
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
-    perf = sa3dpr.calc_perf()
+    perf = pyurof3dsa.processing.calc_perf()
     cp["SA (3-D)"] = perf["C_P"]
     cd["SA (3-D)"] = perf["C_D"]
     # Make figure
@@ -258,12 +251,12 @@ def make_perf_bar_charts():
     os.chdir(paper_dir)
     if save:
        fig.savefig("figures/perf_bar_chart" + savetype)
-       
+
+
 def load_exp_recovery():
     """Load recovery terms from experimental data."""
     os.chdir(exp_dir)
-    import Modules.plotting as exppl
-    wm = exppl.WakeMap(1.0)
+    wm = pyrvatrd.plotting.WakeMap(1.0)
     dUdy = wm.dUdy
     dUdz = wm.dUdz
     tt = wm.ddy_upvp + wm.ddz_upwp
@@ -274,35 +267,35 @@ def load_exp_recovery():
     return {"y_adv": ts.average_over_area(-meanv*dUdy/meanu/U*D, y_R, z_H),
             "z_adv": ts.average_over_area(-meanw*dUdz/meanu/U*D, y_R, z_H),
             "turb_trans": ts.average_over_area(-tt/meanu/U*D, y_R, z_H),
-            "visc_trans": ts.average_over_area(nu*(d2Udy2 + d2Udz2)/meanu/U*D, 
+            "visc_trans": ts.average_over_area(nu*(d2Udy2 + d2Udz2)/meanu/U*D,
                                                y_R, z_H),
             "pressure_trans": np.nan}
-       
-def make_recovery_bar_chart():
-    """
-    Create a bar chart with x-labels for each recovery term and 5 different
+
+
+def make_recovery_bar_chart(save=False):
+    """Create a bar chart with x-labels for each recovery term and 5 different
     bars per term, corresponding to each CFD case and the experimental data.
     """
     data = {}
     # Load recovery terms from 2-D SST case
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
-    data["SST (2-D)"] = sa2dpr.read_funky_log()
+    data["SST (2-D)"] = pyurof2dsst.processing.read_funky_log()
     # Load recovery terms from 2-D SA case
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
-    data["SA (2-D)"] = sst2dpr.read_funky_log()
+    data["SA (2-D)"] = pyurof2dsa.processing.read_funky_log()
     # Load recovery terms from 3-D SST case (0.0 for now)
     os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
-    data["SST (3-D)"] = sst3dpr.read_funky_log()
+    data["SST (3-D)"] = pyurof3dsst.processing.read_funky_log()
     # Load recovery terms from 3-D SA case
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
-    data["SA (3-D)"] = sa3dpr.read_funky_log()
-    
+    data["SA (3-D)"] = pyurof3dsa.processing.read_funky_log()
+
     # Load experimental data
     data["Exp."] = load_exp_recovery()
 
     # Create figure
-    names = [r"$-V \frac{\partial U}{\partial y}$", 
-             r"$-W \frac{\partial U}{\partial z}$", 
+    names = [r"$-V \frac{\partial U}{\partial y}$",
+             r"$-W \frac{\partial U}{\partial z}$",
              r"Turb. trans.",
              r"$-\frac{\partial P}{\partial x}$",
              r"Visc. trans."]
@@ -312,13 +305,13 @@ def make_recovery_bar_chart():
     areas = [3.66*1.0, 3.66*1.0, 3.66*2.44, 3.66*2.44, 3.0*0.625]
     fig, ax = plt.subplots(figsize=(7.5, 3.5))
     cm = plt.cm.coolwarm
-    
+
     # Plot all recovery terms
     for n, case in enumerate(cases):
         q = [data[case][v] for v in quantities]
         q = np.array(q)*areas[n]
         color = cm(int(n/4*256))
-        ax.bar(np.arange(len(names)) + n*.15, q, color=color, width=0.15, 
+        ax.bar(np.arange(len(names)) + n*.15, q, color=color, width=0.15,
                edgecolor="black", label=case)
     ax.set_xticks(np.arange(len(names)) + 5*.15/2)
     ax.set_xticklabels(names)
@@ -326,36 +319,35 @@ def make_recovery_bar_chart():
     ax.set_ylabel(r"$\frac{U \, \mathrm{ transport} \times A_c}"
                   "{UU_\infty D^{-1}}$")
     ax.legend(loc="best", ncol=1)
-    fig.tight_layout()    
+    fig.tight_layout()
     os.chdir(paper_dir)
     if save:
         fig.savefig("figures/mom_bar_graph"+savetype)
-    
+
     for k,v in data.items():
         print(k)
         print(v)
-    
-    
+
+
 if __name__ == "__main__":
     if not os.path.isdir("figures"):
         os.mkdir("figures")
     set_sns()
     plt.rcParams["axes.grid"] = True
-    
+
     save = True
     savetype = ".pdf"
-    
-#    plot_exp_perf()
-#    plot_exp_meancontquiv()
-    plot_cfd_meancontquiv("kOmegaSST")
-    plot_cfd_meancontquiv("SpalartAllmaras")
-#    plot_cfd_u_profile()
-#    plot_verification()
-#    plot_profiles()
-#    make_perf_bar_charts()
-#    make_recovery_bar_chart()
-#    plot_exp_kcont()
-#    plot_cfd_kcont("kOmegaSST")
-#    plot_cfd_kcont("SpalartAllmaras")
+
+    plot_exp_perf(save=save)
+    plot_exp_meancontquiv(save=save)
+    plot_cfd_meancontquiv("kOmegaSST", save=save)
+    plot_cfd_meancontquiv("SpalartAllmaras", save=save)
+    plot_verification(save=save)
+    plot_profiles(save=save)
+    make_perf_bar_charts(save=save)
+    make_recovery_bar_chart(save=save)
+    plot_exp_kcont(save=save)
+    plot_cfd_kcont("kOmegaSST", save=save)
+    plot_cfd_kcont("SpalartAllmaras", save=save)
 
     plt.show()
