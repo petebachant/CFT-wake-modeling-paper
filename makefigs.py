@@ -126,7 +126,7 @@ def plot_verification(save=False):
                      "timestep_dep.csv")
     df_ts_sa = pd.read_csv(p)
     df_nx_sa = pd.read_csv(p.replace("timestep_dep", "spatial_grid_dep"))
-    df_nx_sa.sort("nx", inplace=True)
+    df_nx_sa.sort_values(by="nx", inplace=True)
     p = os.path.join(cfd_dirs["2-D"]["kOmegaSST"], "processed",
                      "timestep_dep.csv")
     df_ts_sst = pd.read_csv(p)
