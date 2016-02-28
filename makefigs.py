@@ -38,6 +38,7 @@ cfd_packages = {"3-D": {"kOmegaSST": pyurof3dsst,
 U = 1.0
 D = 1.0
 nu = 1e-6
+savetype = ".pdf"
 
 
 def load_exp_data():
