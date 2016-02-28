@@ -204,8 +204,14 @@ def plot_profiles(save=False):
         fig.savefig("figures/profiles" + savetype)
 
 
-def make_perf_bar_charts(save=False):
-    """Create bar charts for C_P and C_D for all cases."""
+def make_perf_bar_charts(theta_0=720, save=False):
+    """Create bar charts for C_P and C_D for all cases.
+
+    Parameters
+    ----------
+    theta_0 : Start angle in degrees for calculating mean performance in the
+        CFD cases.
+    """
     cp = {}
     cd = {}
     # Load experimental data
@@ -214,22 +220,22 @@ def make_perf_bar_charts(save=False):
     cd["Exp."] = df.mean_cd.mean()
     # Load performance from 2-D SST
     os.chdir(cfd_dirs["2-D"]["kOmegaSST"])
-    perf = pyurof2dsst.processing.calc_perf()
+    perf = pyurof2dsst.processing.calc_perf(theta_0=theta_0)
     cp["SST (2-D)"] = perf["C_P"]
     cd["SST (2-D)"] = perf["C_D"]
     # Load performance from 2-D SA
     os.chdir(cfd_dirs["2-D"]["SpalartAllmaras"])
-    perf = pyurof2dsa.processing.calc_perf()
+    perf = pyurof2dsa.processing.calc_perf(theta_0=theta_0)
     cp["SA (2-D)"] = perf["C_P"]
     cd["SA (2-D)"] = perf["C_D"]
     # Load performance from 3-D SST
     os.chdir(cfd_dirs["3-D"]["kOmegaSST"])
-    perf = pyurof3dsst.processing.calc_perf()
+    perf = pyurof3dsst.processing.calc_perf(theta_0=theta_0)
     cp["SST (3-D)"] = perf["C_P"]
     cd["SST (3-D)"] = perf["C_D"]
     # Load performance from 3-D SA
     os.chdir(cfd_dirs["3-D"]["SpalartAllmaras"])
-    perf = pyurof3dsa.processing.calc_perf()
+    perf = pyurof3dsa.processing.calc_perf(theta_0=theta_0)
     cp["SA (3-D)"] = perf["C_P"]
     cd["SA (3-D)"] = perf["C_D"]
     # Make figure
