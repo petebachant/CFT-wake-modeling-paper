@@ -34,7 +34,6 @@ cfd_packages = {"3-D": {"kOmegaSST": pyurof3dsst,
                 "2-D": {"kOmegaSST": pyurof2dsst,
                         "SpalartAllmaras": pyurof2dsa}}
 
-
 U = 1.0
 D = 1.0
 nu = 1e-6
