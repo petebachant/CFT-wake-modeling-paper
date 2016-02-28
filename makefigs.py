@@ -330,24 +330,56 @@ def make_recovery_bar_chart(save=False):
 
 
 if __name__ == "__main__":
-    if not os.path.isdir("figures"):
-        os.mkdir("figures")
-    set_sns()
-    plt.rcParams["axes.grid"] = True
+    import argparse
+    parser = argparse.ArgumentParser(description="Create figures.")
+    parser.add_argument("plots", nargs="*", help="Which plots to create",
+                        choices=["exp_perf", "meancontquiv", "verification",
+                                 "kcont", "perf_bar_charts", "profiles",
+                                 "recovery", "none"], default="none")
+    parser.add_argument("--all", "-a", action="store_true", default=False,
+                        help="Plot all figures used in publication")
+    parser.add_argument("--style", nargs=1, help="matplotlib stylesheet")
+    parser.add_argument("--save", "-s", action="store_true", default=False,
+                        help="Save figures to local directory")
+    parser.add_argument("--no-show", action="store_true", default=False,
+                        help="Do not show figures")
+    args = parser.parse_args()
+    save = args.save
 
-    save = True
-    savetype = ".pdf"
+    if args.plots == "none" and not args.all:
+        print("No plots selected")
+        parser.print_help()
+        sys.exit(2)
 
-    plot_exp_perf(save=save)
-    plot_exp_meancontquiv(save=save)
-    plot_cfd_meancontquiv("kOmegaSST", save=save)
-    plot_cfd_meancontquiv("SpalartAllmaras", save=save)
-    plot_verification(save=save)
-    plot_profiles(save=save)
-    make_perf_bar_charts(save=save)
-    make_recovery_bar_chart(save=save)
-    plot_exp_kcont(save=save)
-    plot_cfd_kcont("kOmegaSST", save=save)
-    plot_cfd_kcont("SpalartAllmaras", save=save)
+    if save:
+        if not os.path.isdir("figures"):
+            os.mkdir("figures")
 
-    plt.show()
+    if args.style is not None:
+        plt.style.use(args.style)
+    else:
+        from pxl.styleplot import set_sns
+        set_sns()
+
+    if "exp_perf" in args.plots or args.all:
+        plot_exp_perf(save=save)
+    if "meancontquiv" in args.plots or args.all:
+        plot_exp_meancontquiv(save=save)
+        plot_cfd_meancontquiv("kOmegaSST", save=save)
+        plot_cfd_meancontquiv("SpalartAllmaras", save=save)
+    if "verification" in args.plots or args.all:
+        plot_verification(save=save)
+    if "profiles" in args.plots or args.all:
+        plot_profiles(save=save)
+    if "perf_bar_charts" in args.plots or args.all:
+        make_perf_bar_charts(save=save)
+    if "recovery" in args.plots or args.all:
+        make_recovery_bar_chart(save=save)
+    if "kcont" in args.plots or args.all:
+        plot_exp_kcont(save=save)
+        plot_cfd_kcont("kOmegaSST", save=save)
+        plot_cfd_kcont("SpalartAllmaras", save=save)
+
+
+    if not args.no_show:
+        plt.show()
