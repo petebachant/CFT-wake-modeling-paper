@@ -1,4 +1,4 @@
-# Numerical modeling the wake of a vertical-axis cross-flow turbine
+# Modeling the near-wake of a vertical-axis cross-flow turbine with 2-D and 3-D RANS
 
 A paper evaluating various techniques for modeling CFT wakes.
 
