@@ -230,57 +230,32 @@ hope to answer here are:
 \end{enumerate}
 
 
-\section{Turbine description}
-
-In this study we seek to predict the near-wake of the UNH-RVAT turbine, shown in
-Figure~\ref{fig:RVAT-CAD}. Experimental performance curves for the UNH-RVAT are
-shown in Figure~\ref{fig:exp_perf}. We modeled the turbine at a tip speed ratio
-$\lambda=1.9$, which corresponds to the maximum power coefficient, and a turbine
-diameter Reynolds number $Re_D \approx 10^6$, which corresponds to a
-$Re$-independent state for both performance and near-wake characteristics, as
-determined from experimental measurements \cite{Bachant2014,
-    Bachant2016-RVAT-Re-dep}.
-
-
-\begin{figure}[ht]
-    \centering
-    
-    \includegraphics[clip, trim=0 1in 0 1in, width=0.8\textwidth]{figures/CAD}
-    
-    \caption{CAD drawings of the UNH-RVAT cross-flow turbine as designed (left)
-        and cleaned for simulation (right).}
-    
-    \label{fig:RVAT-CAD}
-\end{figure}
-
-
-\begin{figure}[ht]
-    \centering
-
-    \includegraphics[width=0.9\textwidth]{figures/exp_perf}
-
-    \caption{Mean rotor power (left) and drag (right) coefficient curves from
-        the tow tank experiments\cite{Bachant2016-RVAT-Re-dep}.}
-
-    \label{fig:exp_perf}
-\end{figure}
-
-
 \section{Numerical setup}
 
 In this study the UNH-RVAT baseline tow tank experiment was simulated using a
 mean rotor tip speed ratio $\lambda=1.9$, which corresponds to the maximum
-measured power coefficient. The tow speed or free stream velocity $U_\infty=1.0$
-m/s gives a turbine diameter Reynolds number $Re_D \approx 10^6$, which
-corresponds to the $Re$-independent state for both performance and near-wake
-characteristics, as determined from previous experimental measurements
-\cite{Bachant2014, Bachant2016-Energies}.
+measured power coefficient; cf. Figure~\ref{fig:exp-perf}. The tow speed or free
+stream velocity $U_\infty=1.0$ m/s gives a turbine diameter Reynolds number
+$Re_D \approx 10^6$, which corresponds to the $Re$-independent state for both
+performance and near-wake characteristics, as determined from previous
+experimental measurements \cite{Bachant2014, Bachant2016-Energies}.
 
 The turbines CAD geometry was prepared or ``cleaned'' for CFD by removing
 details determined to be unnecessary, e.g., screw heads and axial shaft grooves,
 which would complicate the meshing process and contribute very little to the
 overall loading or flow modulation. A drawing of the physically and numerically
 modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
+
+\begin{figure}
+    \centering
+    
+    \includegraphics[width=0.9\textwidth]{figures/exp_perf}
+    
+    \caption{Mean rotor power (left) and drag (right) coefficient curves from
+        the tow tank experiments\cite{Bachant2016-RVAT-Re-dep}.}
+    
+    \label{fig:exp-perf}
+\end{figure}
 
 \begin{figure}
     \centering
@@ -292,6 +267,7 @@ modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
     
     \label{fig:cfd-cad}
 \end{figure}
+
 
 To close the RANS equations, two different turbulence models were
 used---Menter's $k$--$\omega$ SST \cite{Menter1994} and the Spalart--Allmaras
