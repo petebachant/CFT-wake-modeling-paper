@@ -261,32 +261,61 @@ determined from experimental measurements \cite{Bachant2014,
 \end{figure}
 
 
-\section{Numerical models}
+\section{Numerical setup}
 
-The flow field was modeled using the Reynolds-averaged Navier--Stokes equations,
-employing two different turbulence models---Menter's $k$--$\omega$ SST
-\cite{Menter1994} and the Spalart--Allmaras (SA) one equation model
-\cite{Spalart1992}. The SST model was chosen due to its prominence in the
-literature for simulating separating flows, which we assumed to be present in
-the current problem in the form of dynamic stall. The SA model was shown by
-Ferreira et al. \cite{Ferreira2007} to match experimental particle image
+In this study the UNH-RVAT baseline tow tank experiment was simulated using a
+mean rotor tip speed ratio $\lambda=1.9$, which corresponds to the maximum
+measured power coefficient. The tow speed or free stream velocity $U_\infty=1.0$
+m/s gives a turbine diameter Reynolds number $Re_D \approx 10^6$, which
+corresponds to the $Re$-independent state for both performance and near-wake
+characteristics, as determined from previous experimental measurements
+\cite{Bachant2014, Bachant2016-Energies}.
+
+The turbines CAD geometry was prepared or ``cleaned'' for CFD by removing
+details determined to be unnecessary, e.g., screw heads and axial shaft grooves,
+which would complicate the meshing process and contribute very little to the
+overall loading or flow modulation. A drawing of the physically and numerically
+modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
+
+\begin{figure}
+    \centering
+    
+    \includegraphics[clip, trim=0 1in 0 1in, width=0.8\textwidth]{BR-CFD_CAD}
+    
+    \caption{CAD drawings of the UNH-RVAT cross-flow turbine as designed (left)
+        and cleaned for simulation (right).}
+    
+    \label{fig:cfd-cad}
+\end{figure}
+
+To close the RANS equations, two different turbulence models were
+used---Menter's $k$--$\omega$ SST \cite{Menter1994} and the Spalart--Allmaras
+(SA) one equation model \cite{Spalart1992}. Both closures use the eddy-viscosity
+approach---the SA employing a single additional scalar transport equation and
+the SST two. The SST model was chosen due to its prominence in the literature
+for simulating separating flows, which we assumed to be present in the current
+problem in the form of dynamic stall. The SA model was shown by Ferreira
+et al.~\cite{Ferreira2007} to match experimental particle image
 velocimetry (PIV) results for a CFT in dynamic stall, though this was a somewhat
 low Reynolds number case ($5 \times 10^4$). Further justification for using the
 SA model for this case comes from Crivellini and D'Alessandro
 \cite{Crivellini2014}, where they successfully modeled the laminar separation
 bubble and subsequent boundary layer transition to turbulence at Reynolds
-numbers similar to ours.
+numbers similar to those investigated here.
+
 
 \subsection{Computational mesh}
 
-The computational domain is a rectangular volume 3.66 m long, 3.66 m wide, and
+The computational domain was a rectangular volume 3.66 m long, 3.66 m wide, and
 2.44 m tall (for 3-D), with the turbine located 1.52 m from the inlet, and
-centered vertically with a vertical axis. with a cylindrical sliding mesh
-interface, where the turbine zone rotates at a mean tip speed ratio
-$\lambda=1.9$ with a sinusoidal oscillation at the blade passage
-frequency---with and amplitude of 0.19 and the first peak at 0.7 radians---to
-mimic the experimental data. The 2-D mesh overview is shown in
-Figure~\ref{fig:mesh} and the blade mesh is shown in
+centered vertically with a vertical axis, designed to match the tow tank
+dimensions for comparison with previous experiments. The rotor geometry was
+located at the center of a cylindrical sliding mesh interface, which rotated at
+a mean tip speed ratio $\lambda=1.9$ with a sinusoidal oscillation at the blade
+passage frequency---with and amplitude of 0.19 and the first peak at 1.4
+radians---to mimic the slight deviation from the mean tip speed ratio observed
+in the experiments. The 2-D mesh overview is shown in
+Figure~\ref{fig:2d-br-mesh} and the blade mesh detail is shown in
 Figure~\ref{fig:blade-mesh}.
 
 Meshes were generated using \textit{OpenFOAM}'s \textit{blockMesh} and
@@ -300,20 +329,21 @@ boundary layer, 20 layers are added next to the blades with an expansion ratio
 of 1.2. Overall mesh refinement is controlled by a single parameter---the number
 of cells in the streamwise direction, $N_x$.
 
-3-D computer aided design (CAD) files of the turbine are available from
-\cite{Bachant2014-RVAT-CAD}.
-
-\begin{figure}[ht]    
-    \includegraphics[width=0.8\textwidth]{figures/2d_mesh}
+\begin{figure}
+    \centering
+    
+    \includegraphics[width=0.8\textwidth]{BR-CFD_2D_mesh}
     
     \caption{Overview of the 2-D computational mesh.}
     
-    \label{fig:mesh}
+    \label{fig:2d-br-mesh}
 \end{figure}
 
 
-\begin{figure}[ht]
-    \includegraphics[width=0.7\textwidth]{figures/2D_blade_mesh_closeup}
+\begin{figure}
+    \centering
+    
+    \includegraphics[width=0.7\textwidth]{BR-CFD_2D_blade_mesh_closeup}
     
     \caption{Detailed view of the 2-D computational mesh near the blades.}
     
@@ -326,42 +356,55 @@ of cells in the streamwise direction, $N_x$.
 Simulations were run using the \textit{pimpleDyMFoam} solver from the
 open-source finite volume CFD package \textit{OpenFOAM}, version 2.3.x.
 \textit{pimpleDyMFoam} uses a hybrid PISO-SIMPLE algorithm for pressure-velocity
-coupling and is compatible with dynamic meshes.
+coupling and is compatible with dynamic meshes. An Euler scheme was used to
+advance the simulation forward in time. The case files required to replicate the
+simulations are available from \cite{Bachant2016-UNH-RVAT-2D-OpenFOAM-SST,
+    Bachant2016-UNH-RVAT-2D-OpenFOAM-SA, Bachant2016-UNH-RVAT-3D-OpenFOAM-SST,
+    Bachant2016-UNH-RVAT-3D-OpenFOAM-SA}.
+
 
 \subsection{Initial and boundary conditions}
 
 Initial and boundary conditions were set to match those of the tow tank as well
-as possible. The velocity at the bottom and side walls was fixed to 1 m/s to
-match the tow tank case, while the top boundary condition was a slip velocity
-condition. Note that in 2-D the top and bottom boundary conditions are
-``empty,'' which is an OpenFOAM convention.
+as possible. The velocity at the inlet, bottom, and side walls was fixed to 1
+m/s to match the tow tank case, while the top boundary condition was a slip
+velocity condition. Pressure was held fixed at the outlet. Note that in 2-D the
+top and bottom boundary conditions are ``empty,'' which is an OpenFOAM
+convention to indicate two-dimensionality.
+
+Since the mesh was only refined next to the blade surfaces in order to resolve
+the boundary layer profile, no wall functions were used. However, wall functions
+were used for the other turbine surfaces, i.e., struts, hub, and shaft, and for
+the tank sidewalls, bottom, and top.
+
 
 \section{Model verification}
 
-The $k$--$\omega$ SST and Spalart--Allmaras RANS model cases were verified for
-convergence of the turbine mean power coefficient with respect to grid spacing
-and timestep. The grid topology was fixed, but the number of cells per unit
-length were scaled proportionally, maintaining the same background mesh cell
-aspect ratio. Results for this parameter sweep are shown in
-Figure~\ref{fig:verification}, from which the final number of streamwise
-grid points $N_x = 70$ was chosen. This corresponds to a total cell count of
-approximately $5 \times 10^4$ for the 2-D cases and 16 million for the 3-D case.
+Both the $k$--$\omega$ SST and Spalart--Allmaras RANS model cases were verified
+for convergence of the turbine mean power coefficient with respect to grid
+spacing and time step using 2-D domains. The grid topology was fixed, but the
+number of cells per domain length was scaled proportionally, maintaining the
+same background mesh cell aspect ratio. Results for this parameter sweep are
+shown in Figure~\ref{fig:2d-br-verification}, from which the final number of
+streamwise grid points $N_x = 70$ was chosen. This corresponds to a total cell
+count of approximately $5 \times 10^4$ for the 2-D cases and 16 million for the
+3-D case.
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
-
-    \includegraphics[width=0.9\textwidth]{figures/verification}
-
+    
+    \includegraphics[width=0.9\textwidth]{BR-CFD_verification}
+    
     \caption{Time step (left) and grid size (right) dependence for the 2-D case
         with both the SST and SA turbulence models. Time step dependence was carried
         out with $N_x=70$ and grid size dependence with the time steps annotated for
         each turbulence model.}
-
-    \label{fig:verification}
+    
+    \label{fig:2d-br-verification}
 \end{figure}
 
-Time step dependence was studied using the $N_x=70$ grid, the results from which
-are shown in Figure~\ref{fig:verification}. It was seen that the
+Time step dependence was evaluated using the 2-D $N_x=70$ grid, the results from
+which are shown in Figure~\ref{fig:2d-br-verification}. It was seen that the
 Spalart--Allmaras model converged well with decreasing time step, leading to a
 final time step of 0.001 s. The results from the SST model show a local minimum
 at $\Delta t = 0.002$ s, with some divergence for smaller time steps. The local
