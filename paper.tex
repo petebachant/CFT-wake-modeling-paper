@@ -101,81 +101,127 @@ urban areas \cite{Lott2015}, offshore floating wind farms \cite{Paulsen2011,
 interest \cite{Dabiri2011}.
 
 Despite the development of many simple engineering models based on blade element
-momentum or vortex modeling, it remains difficult to predict the performance of
-cross-flow turbines in all cases---namely when solidity, or blade chord to
-radius ratio is high---a common characteristic of the smaller CFTs. With
-computing power becoming evermore available and affordable, computational fluid
-dynamics (CFD) presents an attractive method for simulating cross-flow turbines
-since it only requires turbulence modeling, i.e., the machine is described from
-first principles. However, CFD can be computationally expensive when done in
-three dimensions, which may be necessary in some cases. There are many examples
-in the literature of 2-D cross-flow turbine simulations with widely varying
-results. Balduzzi et al. provides a summary of recent computations and an
-attempt to standardize a methodology for using Reynolds-averaged Navier--Stokes
-(RANS) to correctly simulate performance of a 2-D CFT \cite{Balduzzi2016}.
+momentum or vortex methods, it remains difficult to predict the performance of
+cross-flow turbines (CFTs, often vertical-axis turbines or VATs) in all
+cases---namely when solidity, or blade chord-to-radius ratio is high---a common
+characteristic of smaller rotors, and those designed for marine hydrokinetic
+(MHK) applications. With computing power becoming evermore available and
+affordable, computational fluid dynamics (CFD) has become an attractive method
+for predicting the performance of cross-flow turbines since it only requires
+that turbulence be modeled, i.e., the physics can be described from theoretical
+true first principles by solving the Navier--Stokes equations using a boundary
+layer resolving body-fitted grid. However, CFD can be computationally expensive
+when done in three dimensions, which may be necessary in some cases.
 
-Modeling the boundary layer flows on cross-flow turbine blades is very
-challenging due to the dynamically changing inflow and angle of attack---which
-often exceeds static stall values and causes dynamic stall. Furthermore, the
-ability to predict the occurrence and interdependence of boundary layer
-transition and separation can have dramatic influence on the blade loading and
-therefore the predicted turbine power output. These challenges cast significant
-doubt on the ability of high-fidelity CFD modeling to replace wind tunnel or
+There are many examples in the literature of 2-D cross-flow turbine simulations
+with widely varying results. Balduzzi et al.~\cite{Balduzzi2016} provides
+a summary of recent efforts and an attempt to standardize a methodology for
+using Reynolds-averaged Navier--Stokes (RANS) to correctly predict performance
+of a 2-D CFT. Howell et al.~\cite{Howell2010}, performed both 2-D and 3-D
+simulations of a high solidity cross-flow turbine using a $k$--$\epsilon$
+renormalization group (RNG) turbulence model. The results from the 2-D
+simulations over-predicted power coefficient, while the 3-D case matched well
+with wind tunnel measurements near the tip speed ratio of maximum power. In
+general, 3-D simulations are less common, but have begun to appear more
+frequently recently---a testament to the progress towards higher computing
+power.
+
+An overview of 3-D blade-resolved cross-flow turbine simulations reported in the
+literature is presented in Table~\ref{tab:cfd-refs}. The $k$--$\omega$ SST RANS
+turbulence model is shown to be a popular choice due to its success in
+predicting flows with adverse pressure gradients and
+separation~\cite{Menter2003}. Higher fidelity methods that resolve the large
+scales of turbulence, such as large-eddy and detached-eddy simulation have also
+been used. Note that for all the studies listed, model validation was either
+done for performance or wake predictions---not both---and in some case omitted
+entirely.
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c|c}
+        Author & Turbulence modeling & Perf. val. & Wake val. \\ 
+        \hline
+        Alaimo et al.~\cite{Alaimo2015} & $k$--$\epsilon$ & N/A & N/A \\ 
+        Marsh et al.~\cite{Marsh2015} & SST & \cite{Rawlings2008} & N/A \\ 
+        Orlandi et al.~\cite{Orlandi2015} & SST & \cite{Akins1989,Mertens2003} & N/A \\ 
+        Lam \& Peng~\cite{Lam2016} & SST RANS \& IDDES\tablefootnote{Improved delayed detached-eddy simulation.} & N/A & \cite{Tescione2014} \\ 
+        Nini et al.~\cite{Nini2014} & Spalart--Allmaras & N/A & \cite{Battisti2011} \\ 
+        Boudreau \& Dumas~\cite{Boudreau2015} & DDES\tablefootnote{Delayed detached-eddy simulation.} & N/A & N/A \\ 
+        Li et al.~\cite{Li2013} & SST \& Smagorinsky--Lilly LES & \cite{McLaren2011} & N/A \\ 
+        Howell et al.~\cite{Howell2010} & $k$--$\epsilon$ RNG\tablefootnote{Renormalization group.} & \cite{Howell2010} & N/A
+    \end{tabular}
+    
+    \caption{Selected 3-D blade-resolved cross-flow turbine simulations reported
+        in the literature, turbulence modeling employed, and performance and/or wake
+        studies used for validation. Note the Li et al. study used periodic boundary
+        conditions and is technically considered 2.5-D.}
+    
+    \label{tab:cfd-refs}
+\end{table}
+
+Modeling the boundary layer flows on cross-flow turbine blades is essential to
+predicting the blade loading. This flow condition presents a challenge due to
+the dynamically changing inflow velocity and angle of attack---which often
+exceeds static stall values and causes dynamic stall. Furthermore, the ability
+to predict the occurrence and interdependence of boundary layer transition to
+turbulence and separation can have dramatic influence on the blade loading and
+therefore the predicted turbine power output. These challenges present
+significant obstacles to the prospect of using CFD to replace wind tunnel or
 tank testing of physical models.
 
-\todo[inline]{Put survey of CFD accuracy here}
+To date, little computational work has been done to attempt to design arrays of
+CFTs, despite their prospects for closer spacing compared with axial-flow
+turbines (AFTs). For example, Araya et al.~\cite{Araya2014} modeled the flow
+through a VAT array using ``leaky Rankine body'' potential flow singularities,
+which was able to rank relative---though not absolut---performance of array
+configurations. Goude and Agren~\cite{Goude2010} used a 2-D vortex method to
+simulate a farm of cross-flow turbines, though this was not validated with
+experiments. Durrani et al.~\cite{Durrani2011} used 2-D CFD to model a
+group of cross-flow turbines, observing higher power output for a staggered
+configuration, but also did not compare with experimental results. Giorgetti
+et al.~\cite{Giorgetti2015} took a similar approach for 2-D array analysis using
+turbine pairs inspired by Dabiri~\cite{Dabiri2011}, but again experimental
+validation was not performed. Li and Calisal \cite{Li2010} used a 3-D vortex
+line method to show mutually improved power output from two adjacent turbines,
+though the simulations over-predicted the effects compared with experiments.
+Antheaume et al.~\cite{Antheaume2008} used a blade element approach
+coupled with a 3-D RANS solver to also show how close spacing can improve power
+output of CFTs.
 
-In this study we set out to model the wake of the University of New Hampshire's
-Reference Vertical-Axis (cross-flow) Turbine (UNH-RVAT) using a
-Reynolds-averaged Navier--Stokes numerical model. Though studies in the
-literature generally focus on predicting the turbine loading and the local blade
-boundary layer, we seek to model the larger scale flow produced by the rotor.
-The wake of this particular turbine is of interest since it has been shown
+In this study we set out to model the performance and near-wake of the high
+solidity University of New Hampshire Reference Vertical Axis Turbine (UNH-RVAT)
+using the Reynolds-averaged Navier--Stokes equations discretized via the finite
+volume method. Though studies in the literature generally focus on predicting
+the turbine loading and the local blade boundary layer, we seek to model both
+this and the larger scale flow produced by the rotor, i.e., the near-wake, which
+is of interest for this particular turbine since it has been shown
 experimentally that the near-wake's momentum and energy transport processes are
 dominated by vertical advection \cite{Bachant2015-JoT}. It logically follows
-that a 2-D simulation would not correctly predict wake recovery, but is of
-interest to what extent this is true, since the computational feasibility of 2-D
-simulations is attractive.
+that a 2-D simulation, which omits the vertical dimension, would not correctly
+predict wake recovery and turbine--turbine interaction. However, it is of
+interest to determine how wrong a 2-D model may be, since the computational
+feasibility is attractive.
 
 It is assumed that if the turbine power output and near-wake predictions from
 the numerical model match those of the experiments, the flow field can be
 inspected in greater detail, i.e., that the experiments will have been
-``interpolated''. This will give us access to unmeasured quantities, e.g.
-pressure, and allow us to see where the dominant flow structures originate and
-help develop low-order wake generator models for use in turbine array modeling.
-For example, Shamsoddin and Porte-Agel modeled a 2-D CFT using large eddy
-simulation (LES) with an actuator line approach to impart force on the flow
-field \cite{Shamsoddin2014}.
-
-To date, little computational work has been done to attempt to design arrays of
-CFTs, despite their prospects for closer spacing compared with axial-flow
-turbines (AFTs). For example, Araya et al. modeled the flow through a VAT array
-using ``leaky Rankine body'' potential flow singularities \cite{Araya2014},
-which was able to rank relative performance of array configurations. Goude and
-Agren used a 2-D vortex method to simulate a farm of cross-flow turbines
-\cite{Goude2010}, though this was not validated with experiments. Durrani et al.
-used 2-D CFD to model a group of cross-flow turbines, observing higher power
-output for a staggered configuration, but also did not compare with experimental
-results \cite{Durrani2011}. Li and Calisal \cite{Li2010} used a 3-D vortex line
-method to show mutually improved power output from two adjacent turbines, though
-the simulations over-predicted the effects compared with experiments. Antheaume
-et al. \cite{Antheaume2008} used a blade element approach coupled with a 3-D
-RANS solver to also show how close spacing can improve power output of CFTs.
-
-To summarize, the questions we hope to answer here are:
+``interpolated.'' This will provide access to unmeasured quantities, e.g.,
+pressure, and allow inspection into where the dominant flow structures
+originate. This will ultimately help develop and evaluate low-order wake
+generator models for use in turbine array modeling. In summary, the questions we
+hope to answer here are:
 
 \begin{enumerate}
-
-    \item Can or should 2-D RANS be used for array design?
+    \item Can 2-D RANS be used for individual turbine and/or array design?
     
     \item How accurately can 3-D RANS predict performance?
-
-    \item Can 3-D RANS ``interpolate'' the experimental results and provide insight to develop new low-order wake generators to represent CFTs?
-
+    
+    \item Can 3-D RANS ``interpolate'' the experimental results and provide
+    insight to develop new low-order wake generators to represent CFTs?
+    
     \item Does 3-D RANS realize the correct proportions of wake recovery
     mechanisms, i.e., are the 3-D blade-resolved results a good ``target'' for
-    those from a low-order model?
-
+    those a low-order model should produce?
 \end{enumerate}
 
 
