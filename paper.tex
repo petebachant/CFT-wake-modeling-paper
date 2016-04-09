@@ -25,7 +25,7 @@
 % Use the \preprint command to place your local institutional report number
 % on the title page in preprint mode.
 % Multiple \preprint commands are allowed.
-\preprint{}
+\preprint{Preprint submitted to Journal of Renewable and Sustainable Energy}
 
 \title{Modeling the near-wake of a vertical-axis cross-flow turbine with 2-D and
     3-D RANS}
@@ -84,7 +84,7 @@ Durham, NH}
 \pacs{}% insert suggested PACS numbers in braces on next line
 
 \maketitle %\maketitle must follow title, authors, abstract and \pacs
-\listoftodos
+% \listoftodos
 
 \section{Introduction}
 
@@ -141,23 +141,23 @@ entirely.
 \begin{table}
     \centering
     \begin{tabular}{c|c|c|c}
-        Author & Turbulence modeling & Perf. val. & Wake val. \\ 
+        Author & Turbulence modeling & Perf. val. & Wake val. \\
         \hline
-        Alaimo et al.~\cite{Alaimo2015} & $k$--$\epsilon$ & N/A & N/A \\ 
-        Marsh et al.~\cite{Marsh2015} & SST & Reference~\cite{Rawlings2008} & N/A \\ 
-        Orlandi et al.~\cite{Orlandi2015} & SST & References~\cite{Akins1989,Mertens2003} & N/A \\ 
-        Lam \& Peng~\cite{Lam2016} & SST RANS \& IDDES & N/A & Reference~\cite{Tescione2014} \\ 
-        Nini et al.~\cite{Nini2014} & Spalart--Allmaras & N/A & Reference~\cite{Battisti2011} \\ 
-        Boudreau \& Dumas~\cite{Boudreau2015} & DDES & N/A & N/A \\ 
-        Li et al.~\cite{Li2013} & SST \& Smagorinsky--Lilly LES & Reference~\cite{McLaren2011} & N/A \\ 
+        Alaimo et al.~\cite{Alaimo2015} & $k$--$\epsilon$ & N/A & N/A \\
+        Marsh et al.~\cite{Marsh2015} & SST & Reference~\cite{Rawlings2008} & N/A \\
+        Orlandi et al.~\cite{Orlandi2015} & SST & References~\cite{Akins1989,Mertens2003} & N/A \\
+        Lam \& Peng~\cite{Lam2016} & SST RANS \& IDDES & N/A & Reference~\cite{Tescione2014} \\
+        Nini et al.~\cite{Nini2014} & Spalart--Allmaras & N/A & Reference~\cite{Battisti2011} \\
+        Boudreau \& Dumas~\cite{Boudreau2015} & DDES & N/A & N/A \\
+        Li et al.~\cite{Li2013} & SST \& Smagorinsky--Lilly LES & Reference~\cite{McLaren2011} & N/A \\
         Howell et al.~\cite{Howell2010} & $k$--$\epsilon$ RNG & Reference~\cite{Howell2010} & N/A
     \end{tabular}
-    
+
     \caption{Selected 3-D blade-resolved cross-flow turbine simulations reported
         in the literature, turbulence modeling employed, and performance and/or wake
         studies used for validation. Note the Li et al. study used periodic boundary
         conditions and is technically considered 2.5-D.}
-    
+
     \label{tab:cfd-refs}
 \end{table}
 
@@ -215,12 +215,12 @@ hope to answer here are:
 
 \begin{enumerate}
     \item Can 2-D RANS be used for individual turbine and/or array design?
-    
+
     \item How accurately can 3-D RANS predict performance?
-    
+
     \item Can 3-D RANS ``interpolate'' the experimental results and provide
     insight to develop new low-order wake generators to represent CFTs?
-    
+
     \item Does 3-D RANS realize the correct proportions of wake recovery
     mechanisms, i.e., are the 3-D blade-resolved results a good ``target'' for
     those a low-order model should produce?
@@ -245,23 +245,23 @@ modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.9\textwidth]{figures/exp_perf}
-    
+
     \caption{Mean rotor power (left) and drag (right) coefficient curves from
         the tow tank experiments\cite{Bachant2016-RVAT-Re-dep}.}
-    
+
     \label{fig:exp-perf}
 \end{figure}
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[clip, trim=0 1in 0 1in, width=0.8\textwidth]{CAD}
-    
+
     \caption{CAD drawings of the UNH-RVAT cross-flow turbine as designed (left)
         and cleaned for simulation (right).}
-    
+
     \label{fig:cfd-cad}
 \end{figure}
 
@@ -309,22 +309,22 @@ of cells in the streamwise direction, $N_x$.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.8\textwidth]{2D_mesh}
-    
+
     \caption{Overview of the 2-D computational mesh.}
-    
+
     \label{fig:2d-br-mesh}
 \end{figure}
 
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.7\textwidth]{2D_blade_mesh_closeup}
-    
+
     \caption{Detailed view of the 2-D computational mesh near the blades.}
-    
+
     \label{fig:blade-mesh}
 \end{figure}
 
@@ -370,14 +370,14 @@ count of approximately $5 \times 10^4$ for the 2-D cases and 16 million for the
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.9\textwidth]{verification}
-    
+
     \caption{Time step (left) and grid size (right) dependence for the 2-D case
         with both the SST and SA turbulence models. Time step dependence was carried
         out with $N_x=70$ and grid size dependence with the time steps annotated for
         each turbulence model.}
-    
+
     \label{fig:2d-br-verification}
 \end{figure}
 
@@ -431,12 +431,12 @@ will have changed, and hence the tare drag will change as well.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.95\textwidth]{perf_bar_chart}
-    
+
     \caption{Power (left) and drag (right) coefficient predictions from
         experiments and each numerical model.}
-    
+
     \label{fig:br-cfd-perf-bar-chart}
 \end{figure}
 
@@ -456,23 +456,23 @@ importance of three-dimensional effects on wake dynamics.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.75\textwidth]{2D_vorticity_SA_964}
-    
+
     \caption{Instantaneous vorticity contours (at $t=9.64$ s) computed for the
         2-D Spalart--Allmaras case.}
-    
+
     \label{fig:br-vorticity-2d}
 \end{figure}
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.75\textwidth]{3D_vorticity_SA_964_10-threshold}
-    
+
     \caption{Iso-vorticity contours (at $t=9.64$ s) colored by the streamwise
         component of vorticity for the 3-D Spalart--Allmaras case.}
-    
+
     \label{fig:br-vorticity-3d}
 \end{figure}
 
@@ -484,13 +484,13 @@ experiments.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.95\textwidth]{profiles}
-    
+
     \caption{Mean velocity (left) and turbulence kinetic energy (right) profiles
         at $x/D=1$ from 2-D simulations, 3-D simulations ($z/H=0$), and experiments
         \cite{Bachant2015-JoT}.}
-    
+
     \label{fig:br-cfd-profiles}
 \end{figure}
 
@@ -533,42 +533,42 @@ boundary condition versus the experiment's free surface.
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[clip, trim=0 0.1in 0.3in 0.2in,
         width=0.72\textwidth]{meancontquiv_exp}
-        
+
         \caption{Mean velocity field at $x/D=1$ from experiments
             \cite{Bachant2016-RVAT-Re-dep}.}
-        
+
         \label{fig:br-cfd-meancontquiv-exp}
     \end{subfigure}
-    
+
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[clip, trim=0 0.2in 0 0.15in,
         width=0.8\textwidth]{meancontquiv_kOmegaSST}
-        
+
         \caption{Mean velocity at $x/D=1$ computed by the 3-D SST model.}
-        
+
         \label{fig:meancontquiv-SST}
     \end{subfigure}
-    
+
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[clip, trim=0 0.2in 0 0.15in,
         width=0.8\textwidth]{meancontquiv_SpalartAllmaras}
-        
+
         \caption{Mean velocity at $x/D=1$ computed by the 3-D SA model.}
-        
+
         \label{fig:meancontquiv-SA}
     \end{subfigure}
-    
+
     \caption{Mean velocity from experiments and 3-D CFD cases. Solid gray lines
         indicate turbine frontal area and dashed lines indicate experimental
         measurement plane.}
-    
+
     \label{fig:br-cfd-mean-velocity}
 \end{figure}
 
@@ -589,40 +589,40 @@ an issue with wake evolution rather than wake generation.
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[width=0.95\textwidth]{kcont_exp}
-        
+
         \caption{Turbulence kinetic energy at $x/D=1$ from experiments
             \cite{Bachant2016-RVAT-Re-dep}.}
-        
+
         \label{fig:kcont-exp}
     \end{subfigure}
-    
+
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[width=0.95\textwidth]{kcont_kOmegaSST}
-        
+
         \caption{Turbulence kinetic energy at $x/D=1$ computed by the 3-D SST
             model.}
-        
+
         \label{fig:kcont-SST}
     \end{subfigure}
-    
+
     \begin{subfigure}[b]{\textwidth}
         \centering
-        
+
         \includegraphics[width=0.95\textwidth]{kcont_SpalartAllmaras}
-        
+
         \caption{Turbulence kinetic energy at $x/D=1$ computed by the 3-D SA
             model.}
-        
+
         \label{fig:kcont-SA}
     \end{subfigure}
-    
+
     \caption{Turbulence kinetic energy from experiments and 3-D CFD cases. Solid
         black lines indicate turbine frontal area.}
-    
+
     \label{fig:br-cfd-kcont}
 \end{figure}
 
@@ -679,12 +679,12 @@ condition.
 
 \begin{figure}
     \centering
-    
+
     \includegraphics[width=0.9\textwidth]{mom_bar_graph}
-    
+
     \caption{Weighted sum normalized momentum recovery terms for each CFD case
         and experiments\cite{Bachant2016-RVAT-Re-dep} at $x/D=1$.}
-    
+
     \label{fig:br-cfd-recovery}
 \end{figure}
 
