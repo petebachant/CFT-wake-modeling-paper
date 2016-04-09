@@ -16,7 +16,12 @@ The `makefigs.py` script should be run from an IPython shell thanks to all the
 wacky `os.chdir` calls.
 
 
-## Building the cover letter
+## Building
 
-    cd cover-letter
-    pandoc --template=template-letter.tex cover-letter.md -o cover-letter.pdf
+To build the paper:
+
+    make paper
+
+To build the cover letter (not included in the Git repo):
+
+    make cover-letter
