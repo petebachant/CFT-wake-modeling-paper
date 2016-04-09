@@ -11,7 +11,7 @@ version = check_output(["git", "describe"]).strip().decode()
 figures = ["figures/" + f for f in os.listdir("figures") \
            if f.endswith(".pdf") or f.endswith(".png")]
 
-files = ["paper.tex", "library.bib", "paper.bbl"]
+files = ["paper.tex", "paper.bbl"]
 
 with ZipFile("archive/paper-{}.zip".format(version), "w") as f:
     for fig in figures:
