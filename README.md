@@ -1,7 +1,8 @@
 # Modeling the near-wake of a vertical-axis cross-flow turbine with 2-D and 3-D RANS
 
-A paper evaluating blade-resolved RANS for modeling CFT wakes. The most recently
-built version of the paper can be viewed
+A paper evaluating blade-resolved RANS for modeling CFT wakes. A preprint of the
+paper has been posted on [arXiv](http://arxiv.org/abs/1604.02611), and the most
+recently built PDF of the paper can be viewed
 [here](https://drive.google.com/file/d/0BwMVIAlxIxfZX3ItY3lZcm5zYVE/view?usp=sharing).
 
 
