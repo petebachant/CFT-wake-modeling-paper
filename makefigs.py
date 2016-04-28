@@ -304,7 +304,7 @@ def make_recovery_bar_chart(save=False):
              r"$-W \frac{\partial U}{\partial z}$",
              r"Turb. trans.",
              r"$-\frac{\partial P}{\partial x}$",
-             r"Visc. trans."]
+             r"Visc. trans. ($\times 10^3$)"]
     quantities = ["y_adv", "z_adv", "turb_trans", "pressure_trans",
                   "visc_trans"]
     cases = ["SST (2-D)", "SA (2-D)", "SST (3-D)", "SA (3-D)", "Exp."]
@@ -316,6 +316,8 @@ def make_recovery_bar_chart(save=False):
     for n, case in enumerate(cases):
         q = [data[case][v] for v in quantities]
         q = np.array(q)*areas[n]
+        # Multiply viscous transport by 1000
+        q[-1] *= 1000
         color = cm(int(n/4*256))
         ax.bar(np.arange(len(names)) + n*.15, q, color=color, width=0.15,
                edgecolor="black", label=case)
@@ -329,10 +331,6 @@ def make_recovery_bar_chart(save=False):
     os.chdir(paper_dir)
     if save:
         fig.savefig("figures/mom_bar_graph"+savetype)
-
-    for k,v in data.items():
-        print(k)
-        print(v)
 
 
 if __name__ == "__main__":
