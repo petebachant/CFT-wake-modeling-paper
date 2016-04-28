@@ -323,7 +323,7 @@ def make_recovery_bar_chart(save=False):
                edgecolor="black", label=case)
     ax.set_xticks(np.arange(len(names)) + 5*.15/2)
     ax.set_xticklabels(names)
-    ax.hlines(0, 0, len(names), color="gray")
+    ax.hlines(0, 0, len(names), color="gray", linewidth=1)
     ax.set_ylabel(r"$\frac{U \, \mathrm{ transport} \times A_c}"
                   "{UU_\infty D^{-1}}$")
     ax.legend(loc="best", ncol=1)
