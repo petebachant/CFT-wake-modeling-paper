@@ -22,3 +22,8 @@ endif
 .PHONY: clean
 clean:
 	latexmk -c paper.tex
+
+
+.PHONY: zip
+zip:
+	python scripts/zip.py
