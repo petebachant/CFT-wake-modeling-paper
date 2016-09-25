@@ -24,6 +24,11 @@ point.
 
 >3. In Performance Prediction session, the author gives a figure(Fig.6 ) to show the comparison of 3d , 2d and experimental data. But fig.6 only gives the results for one case for different methods. The 2d method seems over-predict the Cp and Cd. more results of different cases should be given to verify this idea.
 
+For this study we were mainly looking to model the near-wake at peak performance
+(determined experimentally), rather than the entire performance envelope. The
+performance predictions are therefore an indication of the loading on the
+turbine and the level to which it imparts force onto the flow. Notes have been
+added to the manuscript to clarify this point.
 
 >4. Shaft and Arm/Strut effects are important to the turbine, and have been discussed by previous publications by using RANS such as
 >

@@ -207,14 +207,15 @@ would not correctly predict wake recovery and turbine--turbine interaction.
 However, it is of interest to determine how wrong a 2-D model may be, since the
 lower computational cost of 2-D simulations is attractive.
 
-We seek to validate 2-D and 3-D blade-resolved RANS models against the UNH-RVAT
-mechanical power and near-wake measurements. If the blade loading and velocity
-in the near-wake match well enough, the flow field can potentially be inspected
-in greater detail, i.e., we may be able to make observations of quantities not
-measured experimentally, e.g., pressure, and gain greater insight into where the
-dominant flow structures originate. This will ultimately help develop and
-evaluate low-order wake generator models for use in turbine array modeling. In
-summary, the questions we hope to answer here are:
+We sought to validate 2-D and 3-D blade-resolved RANS models against the
+UNH-RVAT mechanical power and near-wake measurements taken at the experimentally
+determined optimal tip speed ratio $\lambda_0 = 1.9$. If the blade loading and
+velocity in the near-wake match well enough, the flow field can potentially be
+inspected in greater detail, i.e., we may be able to make observations of
+quantities not measured experimentally, e.g., pressure, and gain greater insight
+into where the dominant flow structures originate. This will ultimately help
+develop and evaluate low-order wake generator models for use in turbine array
+modeling. In summary, the questions we hope to answer here are:
 
 \begin{enumerate}
     \item Can 2-D RANS be used for individual turbine and/or array design?
@@ -431,7 +432,8 @@ turbulence statistics) in the original velocity will be negligible.
 
 \subsection{Performance prediction}
 
-Predictions for both the mean rotor power and drag coefficients are shown in
+Predictions for both the mean rotor power and drag coefficients at the optimal
+tip speed ratio $\lambda_0 = 1.9$ are shown in
 Figure~\ref{fig:br-cfd-perf-bar-chart}. In general, the 2-D CFD cases both
 significantly overpredict turbine loading and therefore mechanical power output,
 which is due to their increased blockage ratio, unresolved blade end effects,
@@ -453,8 +455,8 @@ than the experimental measurements.
 
     \includegraphics[width=0.95\textwidth]{perf_bar_chart}
 
-    \caption{Power (left) and drag (right) coefficient predictions from
-        experiments and each numerical model.}
+    \caption{Power (left) and drag (right) coefficient predictions at $\lambda =
+    1.9$, from experiments and each numerical model.}
 
     \label{fig:br-cfd-perf-bar-chart}
 \end{figure}
