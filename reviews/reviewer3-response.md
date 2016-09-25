@@ -38,3 +38,8 @@ and by using experimental test such as
 Li Y, Calisal S M. Three-dimensional effects and arm effects on modeling a vertical axis tidal current turbine. Renewable Energy, 2010, 35(10):2325-2334.
 >
 However, the authors have not well explained it in the manuscript. Please extend this part.
+
+In the manuscript we have cited a figure from Rawlings (2008, the source of
+experimental data used by Li and Calisal for validation), where support strut
+drag only accounts for a 4 percentage point decrease in $C_P$, which is much
+smaller than the discrepancy observed in the 2-D simulations.
