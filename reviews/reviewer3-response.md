@@ -15,6 +15,12 @@ plot. A note has been added to the manuscript to clarify this point.
 
 >2. No the convergence study for 3d model in this paper.
 
+This is true, we did not perform a true convergence study for the 3-D model. We
+simply extrapolated the 2-D grid into three dimensions. While this may not be
+ideal, this strategy may be useful to practitioners looking to perform similar
+simulations, but do not have the computational resources to perform multiple
+high fidelity 3-D simulations. The paper has been adjusted to clarify this
+point.
 
 >3. In Performance Prediction session, the author gives a figure(Fig.6 ) to show the comparison of 3d , 2d and experimental data. But fig.6 only gives the results for one case for different methods. The 2d method seems over-predict the Cp and Cd. more results of different cases should be given to verify this idea.
 
