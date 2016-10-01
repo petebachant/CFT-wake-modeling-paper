@@ -93,10 +93,10 @@ In the pursuit of a fully sustainable energy profile, cross-flow (often
 vertical-axis) turbines (CFTs) can still play a role. Despite extensive research
 and development in the 1970s through the early 1990s by groups like Sandia
 National Labs in the US \cite{Sutherland2012} and the National Research Council
-in Canada \cite{Para2002}, the vertical-axis cross-flow Darrieus turbines were
-all but abandoned for large scale commercial terrestrial wind power. Today,
-however, with the development of marine hydrokinetic (MHK) energy devices, CFTs
-are at the forefront, with the first grid-connected commercial device being a
+in Canada \cite{Para2002}, vertical-axis cross-flow Darrieus turbines were all
+but abandoned for large scale commercial terrestrial wind power. Today however,
+with the development of marine hydrokinetic (MHK) energy devices, CFTs are at
+the forefront, with the first grid-connected commercial device being a
 horizontal-axis CFT manufactured and installed by ORPC in Cobscook Bay, Maine
 \cite{ORPC2012}. CFTs are also being examined for small-scale onshore wind in
 urban areas \cite{Lott2015}, offshore floating wind farms \cite{Paulsen2011,
@@ -105,18 +105,22 @@ interest \cite{Dabiri2011}.
 
 Despite the development of many simple engineering models based on blade element
 momentum or vortex methods, it remains difficult to predict the performance of
-cross-flow turbines for all cases---namely when solidity, or blade
-chord-to-radius ratio is high---a common characteristic of smaller rotors, and
-those designed for marine hydrokinetic (MHK) applications. With computing power
-becoming evermore available and affordable, CFD based on the Reynolds-averaged
-Navier--Stokes (RANS) equations has become an attractive method for predicting
-the performance of cross-flow turbines. Since a direct numerical simulation
-(DNS) of all scales at realistic Reynolds numbers is not currently feasible,
-turbulence be modeled. However, with an appropriate turbulence model,
-blade-resolved RANS presents a more physically realistic first principles based
-approach versus simpler models based on momentum theory or potential flow.
-However, CFD can be computationally expensive when done in three dimensions,
-which may be necessary in some cases.
+cross-flow turbines when solidity, or blade chord-to-radius ratio is high---a
+common characteristic of smaller rotors, and those designed for marine
+hydrokinetic (MHK) applications, since water's higher density increases rotor
+loading by roughly an order of magnitude for the same frontal
+area~\cite{Bachant2016-thesis}. With computing power becoming evermore available
+and affordable, CFD based on the Reynolds-averaged Navier--Stokes (RANS)
+equations has become an attractive method for predicting the performance of
+cross-flow turbines. Since a direct numerical simulation (DNS) of all scales at
+realistic Reynolds numbers is not currently feasible, turbulence be modeled.
+However, with an appropriate turbulence model, blade-resolved RANS presents a
+more physically realistic first principles based approach versus simpler models
+based on momentum theory or potential flow. However, CFD can be computationally
+expensive when done in three dimensions, but may be necessary to predict
+performance for low aspect ratio or variable radius rotors, and to predict the
+unique flow field produced by CFTs, and therefore wake recovery and interaction,
+which is discussed in detail later.
 
 There are many examples in the literature of 2-D cross-flow turbine simulations
 with widely varying results. Balduzzi et al.~\cite{Balduzzi2016} provides
