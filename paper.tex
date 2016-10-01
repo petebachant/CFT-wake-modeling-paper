@@ -123,17 +123,17 @@ unique flow field produced by CFTs, and therefore wake recovery and interaction,
 which is discussed in detail later.
 
 There are many examples in the literature of 2-D cross-flow turbine simulations
-with widely varying results. Balduzzi et al.~\cite{Balduzzi2016} provides
-a summary of recent efforts and an attempt to standardize a methodology for
-using Reynolds-averaged Navier--Stokes (RANS) to correctly predict performance
-of a 2-D CFT. Howell et al.~\cite{Howell2010}, performed both 2-D and 3-D
-simulations of a high solidity cross-flow turbine using a $k$--$\epsilon$
-renormalization group (RNG) turbulence model. The results from the 2-D
-simulations over-predicted power coefficient, while the 3-D case matched well
-with wind tunnel measurements near the tip speed ratio of maximum power. In
-general, 3-D simulations are less common, but have begun to appear more
-frequently recently---a testament to the progress towards higher computing
-power.
+with widely varying results. Balduzzi et al.~\cite{Balduzzi2016} provides a
+summary of recent efforts and an attempt to standardize a methodology for using
+Reynolds-averaged Navier--Stokes (RANS) to correctly predict performance of a
+2-D CFT. Howell et al.~\cite{Howell2010}, performed both 2-D and 3-D simulations
+of a high solidity cross-flow turbine using a $k$--$\epsilon$ renormalization
+group (RNG) turbulence model. The results from the 2-D simulations
+over-predicted power coefficient since the rotor had a low aspect ratio, while
+the 3-D case matched well with wind tunnel measurements near the tip speed ratio
+of maximum power. In general, 3-D simulations are less common, but have begun to
+appear more frequently recently---a testament to the progress towards higher
+computing power.
 
 An overview of 3-D blade-resolved cross-flow turbine simulations reported in the
 literature is presented in Table~\ref{tab:cfd-refs}. The $k$--$\omega$ SST RANS
@@ -141,9 +141,12 @@ turbulence model is shown to be a popular choice due to its success in
 predicting flows with adverse pressure gradients and
 separation~\cite{Menter2003}. Higher fidelity methods that resolve the large
 scales of turbulence, such as large eddy and detached eddy simulation have also
-been used. Note that for all the studies listed, model validation was performed
-for either performance or wake predictions---not both---and in some case omitted
-entirely.
+been used, though the high computational expense of these techniques may
+preclude their use in industrial applications. Note that for all the studies
+listed, model validation was performed for either performance or wake
+predictions---not both---and in some case omitted entirely. In general, the 3-D
+RANS results cannot replicate a turbine's entire performance envelope, i.e.,
+$C_P$--$\lambda$ curve, but are successful for some tip speed ratios.
 
 \begin{table}
     \centering
@@ -169,14 +172,14 @@ entirely.
 \end{table}
 
 Modeling the boundary layer flows on cross-flow turbine blades is essential to
-predicting the blade loading. This flow condition presents a challenge due to
-the dynamically changing inflow velocity and angle of attack---which often
-exceeds static stall values and causes dynamic stall. Furthermore, the ability
-to predict the occurrence and interdependence of boundary layer transition to
-turbulence and separation can have dramatic influence on the blade loading and
-therefore the predicted turbine power output. These challenges present
-significant obstacles to the prospect of using CFD to replace wind tunnel or
-tank testing of physical models.
+predicting the blade loading. This flow condition presents a challenge since the
+blades encounter a constantly changing relative velocity and angle of
+attack---which often exceeds static stall values and causes dynamic stall.
+Furthermore, the ability to predict the occurrence and interdependence of
+boundary layer transition to turbulence and separation can have dramatic
+influence on the blade loading and therefore the predicted turbine power output.
+These challenges present significant obstacles to the prospect of using CFD to
+replace wind tunnel or tank testing of physical models.
 
 To date, little computational work has been done to attempt to design arrays of
 CFTs, despite their prospects for closer spacing compared with axial-flow
