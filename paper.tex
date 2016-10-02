@@ -545,17 +545,18 @@ in Figure~\ref{fig:br-cfd-profiles}.
 
 Both Spalart--Allmaras cases did a poor job predicting the turbulence kinetic
 energy in the flow, since it must be resolved as variance in the velocity field.
-The 2-D SST model did a good job predicting the peak in $k$ at $y/R=-1$, though
-is missing the smaller peak at $y/R=-1$. This is once again likely due to
-blockage issues, where local tip speed ratio is decreased, increasing the
-blades' instantaneous angle of attack at this location on the downstream
-passage. In contrast, the 3-D SST model predicts the $+y$ peak in turbulence
-kinetic energy very well, though the $-y$ peak magnitude is overpredicted by
-about 30\%. We also see some smearing of $k$ across the center of the rotor,
-which is likely due to exaggerated levels of the turbulent eddy viscosity. This
-could also be an effect of mesh resolution, though for this study only base mesh
-size sensitivity was assessed, rather than local refinement, as this would have
-expanded the parameter space significantly.
+The 2-D SST model did a good job predicting the peak in $k$ at $y/R=-1$, where
+$y$ is the cross-stream coordinate and $R$ is the rotor radius, though is
+missing the smaller peak at $y/R=-1$. This is once again likely due to blockage
+issues, where local tip speed ratio is decreased, increasing the blades'
+instantaneous angle of attack at this location on the downstream passage. In
+contrast, the 3-D SST model predicts the $+y$ peak in turbulence kinetic energy
+very well, though the $-y$ peak magnitude is overpredicted by about 30\%. We
+also see some smearing of $k$ across the center of the rotor, which is likely
+due to exaggerated levels of the turbulent eddy viscosity. This could also be an
+effect of mesh resolution, though for this study only base mesh size sensitivity
+was assessed, rather than local refinement, as this would have expanded the
+parameter space significantly.
 
 
 \subsubsection{Mean velocity in three dimensions}
