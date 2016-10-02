@@ -57,3 +57,9 @@ rotor revolutions. Note that this is consistent with the experimental results.
 >Why blank? [viscous transport in Figure 12]
 
 These terms aren't zero, but are extremely small.
+
+>Not sure if this is true - DMS models have tip correction factors - see reference #2?
+
+We could not find any instances in this reference for DMS model tip correction
+factors for VAWTs. However, if the reviewer has a specific correction in mind we
+would be happy to note this in the manuscript.
