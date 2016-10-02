@@ -673,9 +673,10 @@ more of an issue with wake evolution rather than wake generation.
 
 To get an overall idea of the wake recovery predicted by each model, and
 therefore its potential effectivness in evaluating array spacing, the streamwise
-component of the Navier--Stokes equation was rearranged to isolate $\partial U /
+component of the Navier--Stokes equation was rearranged to isolate the
+streamwise partial derivative of the streamwise mean velocity $\partial U /
 \partial x$---following Bachant and Wosnik~\cite{Bachant2015-JoT}---and compute
-each term at $X/D = 1$ to compare with the experimental results.
+each term at $x/D = 1$ to compare with the experimental results.
 
 We use the RANS models' eddy viscosity to calculate the turbulent transport via
 \begin{equation}
@@ -700,27 +701,28 @@ multiplied by the cross-sectional area of the measurement plane, or the channel
 width in the 2-D cases. Results are shown in a bar chart in
 Figure~\ref{fig:br-cfd-recovery}. Consistent with the relatively large Reynolds
 number regime, viscous transport is essentially negligible compared with other
-mechanisms. Cross-stream advection---or the tendency of streamlines to diverge
-and reduce the streamwise momentum---produces a negative effect for all cases,
-though the 3-D SST model predicts significantly lower values. Vertical advection
-is by definition zero for the 2-D cases. The 3-D cases show varying
-results---with the SST model overpredicting and SA underpredicting the vertical
-velocity's effect on replenishing streamwise momentum. Nevertheless, both 3-D
-models were able to qualitatively resolve this mean vertical advection caused by
-blade tip vortex shedding, which will be crucial to predicting overall wake
-recovery and the performance of closely spaced turbines.
+mechanisms. Cross-stream advection $-V \frac{\partial U}{\partial y}$; or the
+tendency of streamlines to diverge and reduce the streamwise momentum---produces
+a negative effect for all cases, though the 3-D SST model predicts significantly
+lower values. Mean vertical advection $-W \frac{\partial U}{\partial z}$ is by
+definition zero for the 2-D cases. The 3-D cases show varying results---with the
+SST model overpredicting and SA underpredicting the vertical velocity's effect
+on replenishing streamwise momentum. Nevertheless, both 3-D models were able to
+qualitatively resolve this mean vertical advection caused by blade tip vortex
+shedding, which will be crucial to predicting overall wake recovery and the
+performance of closely spaced turbines.
 
-Turbulent transport and streamwise pressure gradient terms show the largest
-discrepancy between results. The 3-D SST case, despite doing a good job
-predicting turbulence kinetic energy, significantly overpredicts the turbulent
-transport term, while other CFD cases are comparable with the experiment. This
-seems to be balanced by a large adverse pressure gradient, which is also present
-to a smaller degree in the 3-D SA case. Interestingly, in contrast, both 2-D CFD
-cases create a wake where the pressure gradient is acting to slightly accelerate
-the flow at $x/D=1$. Unfortunately, pressure data were not acquired from the
-experiment, though results from the 3-D delayed detached eddy simulation (DDES)
-of Boudreau and Dumas \cite{Boudreau2015} concur with the adverse pressure
-gradient condition.
+Turbulent transport and mean streamwise pressure gradient ($-\partial P \partial
+x$) terms show the largest discrepancy between results. The 3-D SST case,
+despite doing a good job predicting turbulence kinetic energy, significantly
+overpredicts the turbulent transport term, while other CFD cases are comparable
+with the experiment. This seems to be balanced by a large adverse pressure
+gradient, which is also present to a smaller degree in the 3-D SA case.
+Interestingly, in contrast, both 2-D CFD cases create a wake where the pressure
+gradient is acting to slightly accelerate the flow at $x/D=1$. Unfortunately,
+pressure data were not acquired from the experiment, though results from the 3-D
+delayed detached eddy simulation (DDES) of Boudreau and Dumas
+\cite{Boudreau2015} concur with the adverse pressure gradient condition.
 
 \begin{figure}
     \centering
