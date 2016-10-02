@@ -1,7 +1,7 @@
 # Response to reviewer 2
 
-We thank the reviewer for his or her thoughtful comments, which have helped us
-improve the paper.
+We thank the reviewer for his or her very thorough and thoughtful comments,
+which have helped us improve the paper.
 
 >In general more work needs to be performed on
 • Discussion of mesh factors that may affect the simulation results
