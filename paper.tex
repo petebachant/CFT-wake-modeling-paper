@@ -128,12 +128,19 @@ summary of recent efforts and an attempt to standardize a methodology for using
 Reynolds-averaged Navier--Stokes (RANS) to correctly predict performance of a
 2-D CFT. Howell et al.~\cite{Howell2010}, performed both 2-D and 3-D simulations
 of a high solidity cross-flow turbine using a $k$--$\epsilon$ renormalization
-group (RNG) turbulence model. The results from the 2-D simulations
-overpredicted power coefficient since the rotor had a low aspect ratio, while
-the 3-D case matched well with wind tunnel measurements near the tip speed ratio
-of maximum power. In general, 3-D simulations are less common, but have begun to
-appear more frequently recently---a testament to the progress towards higher
-computing power.
+group (RNG) turbulence model. The results from the 2-D simulations overpredicted
+power coefficient
+\begin{equation}
+    C_P = \frac{P}{\frac{1}{2} \rho A U_\infty^3},
+    \label{eq:cp}
+\end{equation}
+where $P$ is the mechanical shaft power, $\rho$ is the fluid density, $A$ is the
+rotor frontal area, and $U_\infty$ is the free stream velocity. This was likely
+because the rotor had a low aspect ratio (or ratio of height to rotor diameter
+$H/D$), while the 3-D case matched well with wind tunnel measurements near the
+tip speed ratio of maximum power. In general, 3-D simulations are less common,
+but have begun to appear more frequently recently---a testament to the progress
+towards higher computing power.
 
 An overview of 3-D blade-resolved cross-flow turbine simulations reported in the
 literature is presented in Table~\ref{tab:cfd-refs}. The $k$--$\omega$ SST RANS
