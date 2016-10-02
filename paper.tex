@@ -346,7 +346,10 @@ two-dimensionality.
 Since the mesh was only refined next to the blade surfaces in order to resolve
 the boundary layer profile, no wall functions were used. However, wall functions
 were used for the other turbine surfaces, i.e., struts, hub, and shaft, and for
-the tank sidewalls, bottom, and top.
+the tank sidewalls, bottom, and top. This strategy was adopted to reduce the
+overall cell count; since the struts should be operating at nearly zero angle of
+attack, it was assumed that separation would not be a signifigant contributor to
+their parasitic drag. 
 
 
 \section{Model verification}
