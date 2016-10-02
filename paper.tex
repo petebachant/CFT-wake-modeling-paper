@@ -525,9 +525,11 @@ experiments.
     \label{fig:br-cfd-profiles}
 \end{figure}
 
-Turbulence kinetic energy profiles are also shown in
-Figure~\ref{fig:br-cfd-profiles}. The turbulence kinetic energy for the unsteady
-RANS models was calculated as
+Since this is a relatively high Reynolds number flow, it was of interest to
+evaluate turbulence predictions, since these will play an important role in
+overall flow dynamics. Validation was performed against the UNH-RVAT's
+experimental dataset, which was acquired via acoustic Doppler velocimetry. The
+turbulence kinetic energy for the unsteady RANS models was calculated as
 \begin{equation}
     k = k_{\mathrm{RA}} + \frac{1}{2} \left(
     \overline{U^\prime}^2 +
@@ -537,7 +539,8 @@ RANS models was calculated as
 \end{equation}
 where $U^\prime = U - \overline{U}$ (the resolved velocity fluctuations) and
 $k_{\mathrm{RA}}$ is the kinetic energy calculated by the turbulence model,
-which is zero for the SA model.
+which is zero for the SA model. Profiles from the simulation results are shown
+in Figure~\ref{fig:br-cfd-profiles}.
 
 Both Spalart--Allmaras cases did a poor job predicting the turbulence kinetic
 energy in the flow, since it must be resolved as variance in the velocity field.
