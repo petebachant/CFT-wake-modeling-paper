@@ -431,7 +431,12 @@ turbulence statistics) in the original velocity will be negligible.
 
 \subsection{Performance prediction}
 
-Predictions for both the mean rotor power and drag coefficients at the optimal
+Predictions for both the mean rotor power coefficient $C_P$ and drag coefficient
+\begin{equation}
+    C_D = \frac{F_D}{\frac{1}{2} \rho A U_\infty^2},
+    \label{eq:cd}
+\end{equation}
+where $F_D$ is the total streamwise force acting on the rotor, at the optimal
 tip speed ratio $\lambda_0 = 1.9$ are shown in
 Figure~\ref{fig:br-cfd-perf-bar-chart}. In general, the 2-D CFD cases both
 significantly overpredict turbine loading and therefore mechanical power output,
