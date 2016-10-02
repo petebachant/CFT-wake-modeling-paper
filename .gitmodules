@@ -1,0 +1,3 @@
+[submodule "UNH-RVAT-3D-OpenFOAM"]
+	path = UNH-RVAT-3D-OpenFOAM
+	url = https://github.com/petebachant/UNH-RVAT-3D-OpenFOAM.git
