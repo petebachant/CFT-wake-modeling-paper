@@ -26,3 +26,7 @@ improve the paper.
 It didn't seem to matter much. The mean velocity fields appear to be nearly
 symmetrical about the $x$--$y$ plane, but nonetheless, the slip BC is at least
 closer to how a free surface would behave than a no slip BC.
+
+>Why blank? [viscous transport on in Figure 12]
+
+These terms aren't zero, but are extremely small.
