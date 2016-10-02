@@ -68,3 +68,8 @@ would be happy to note this in the manuscript.
 
 We did try computing "difference" plots, but these were a bit noisy and were
 difficult to interpret.
+
+>Wouldnt this have to be a number of complete revolutions?
+
+It virtually is--6.03 revolutions technically, but the additional 0.03
+revolutions should not have any appreciable effect on the statistics.
