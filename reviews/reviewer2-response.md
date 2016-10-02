@@ -40,13 +40,19 @@ topology parameter space would have been prohibitive.
 Since the chosen SA time step was about half that of the SST, the SA model did
 take longer to solve, though they were still the same order of magnitude. We
 decided it wouldn't be useful to readers to give very specific metrics of solver
-time since there could be many intervening variables, e.g., hardware. 
+time since there could be many intervening variables, e.g., hardware.
 
 >Did you prove that the meshing of the outer walls didn't affect the results.
 
 We did not, but if we inspect the velocity fields, which don't extend out all
 the way to the walls, gradients are very small around the outer region,
 indicating the effects should be negligible.
+
+>why approximately [rotor performance periodicity]?
+
+Since this is an unsteady simulation, there are interactions between blade wakes
+that are not perfectly periodic, so there are some minor differences between
+rotor revolutions. Note that this is consistent with the experimental results.
 
 >Why blank? [viscous transport in Figure 12]
 
