@@ -27,6 +27,14 @@ It didn't seem to matter much. The mean velocity fields appear to be nearly
 symmetrical about the $x$--$y$ plane, but nonetheless, the slip BC is at least
 closer to how a free surface would behave than a no slip BC.
 
+>Is this mesh [Figure 4] too coarse for adequate resolution of the flow?
+
+It could be. For our mesh dependence study we held the topology fixed and scaled
+the mesh proportionally. The mesh should be fine enough to resolve the boundary
+layer since $y^+ \sim 1$, but it is a fair point that maybe separated flow
+structures may be dissipated in an exaggerated way. However, exploring the mesh
+topology parameter space would have been prohibitive.
+
 >Why blank? [viscous transport in Figure 12]
 
 These terms aren't zero, but are extremely small.
