@@ -278,17 +278,17 @@ numbers similar to those investigated here.
 
 \subsection{Computational mesh}
 
-The computational domain was a rectangular volume 3.66 m long, 3.66 m wide, and
-2.44 m tall (for 3-D), with the turbine located 1.52 m from the inlet, and
-centered vertically with a vertical axis, designed to match the tow tank
-dimensions for comparison with previous experiments. The rotor geometry was
-located at the center of a cylindrical sliding mesh interface, which rotated at
-a mean tip speed ratio $\lambda=1.9$ with a sinusoidal oscillation at the blade
-passage frequency---with and amplitude of 0.19 and the first peak at 1.4
-radians---to mimic the slight deviation from the mean tip speed ratio observed
-in the experiments. The 2-D mesh overview is shown in
-Figure~\ref{fig:2d-br-mesh} and the blade mesh detail is shown in
-Figure~\ref{fig:blade-mesh}.
+The computational domain was designed to match the tow tank dimensions for
+comparison with previous experiments. Thus, it was modeled as a rectangular
+volume 3.66 m long, 3.66 m wide, and 2.44 m tall (for the 3-D cases), with the
+turbine located 1.52 m from the inlet, centered within the tank depth with its
+axis oriented vertically. The rotor geometry was located at the center of a
+cylindrical sliding mesh interface, which rotated at a mean tip speed ratio
+$\lambda=1.9$ with a sinusoidal oscillation at the blade passage
+frequency---with and amplitude of 0.19 and the first peak at 1.4 radians---to
+mimic the slight deviation from the mean tip speed ratio observed in the
+experiments. The 2-D mesh overview is shown in Figure~\ref{fig:2d-br-mesh} and
+the blade mesh detail is shown in Figure~\ref{fig:blade-mesh}.
 
 Meshes were generated using OpenFOAM's blockMesh and snappyHexMesh utilities.
 Mesh topology consists of a background hexahedral mesh, which is refined in all
