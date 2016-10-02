@@ -27,6 +27,12 @@ It didn't seem to matter much. The mean velocity fields appear to be nearly
 symmetrical about the $x$--$y$ plane, but nonetheless, the slip BC is at least
 closer to how a free surface would behave than a no slip BC.
 
+>Any studies proving this - PIV works?
+
+To our knowledge, there aren't any studies directly showing that if CFD results
+match well at one point in the domain, they will therefore match elsewhere in
+the domain, but if the reviewer knows of any, we'd be happy to reference them.
+
 >Is this mesh [Figure 4] too coarse for adequate resolution of the flow?
 
 It could be. For our mesh dependence study we held the topology fixed and scaled
