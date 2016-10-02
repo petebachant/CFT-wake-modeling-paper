@@ -35,6 +35,13 @@ layer since $y^+ \sim 1$, but it is a fair point that maybe separated flow
 structures may be dissipated in an exaggerated way. However, exploring the mesh
 topology parameter space would have been prohibitive.
 
+>So the SA and SST took the same time?
+
+Since the chosen SA time step was about half that of the SST, the SA model did
+take longer to solve, though they were still the same order of magnitude. We
+decided it wouldn't be useful to readers to give very specific metrics of solver
+time since there could be many intervening variables, e.g., hardware. 
+
 >Did you prove that the meshing of the outer walls didn't affect the results.
 
 We did not, but if we inspect the velocity fields, which don't extend out all
