@@ -63,3 +63,8 @@ These terms aren't zero, but are extremely small.
 We could not find any instances in this reference for DMS model tip correction
 factors for VAWTs. However, if the reviewer has a specific correction in mind we
 would be happy to note this in the manuscript.
+
+>Can you show differences between these graphically, i.e subtract B from A and C from A to show the change - this would make it a lot easier to see differences
+
+We did try computing "difference" plots, but these were a bit noisy and were
+difficult to interpret.
