@@ -35,6 +35,12 @@ layer since $y^+ \sim 1$, but it is a fair point that maybe separated flow
 structures may be dissipated in an exaggerated way. However, exploring the mesh
 topology parameter space would have been prohibitive.
 
+>Did you prove that the meshing of the outer walls didn't affect the results.
+
+We did not, but if we inspect the velocity fields, which don't extend out all
+the way to the walls, gradients are very small around the outer region,
+indicating the effects should be negligible.
+
 >Why blank? [viscous transport in Figure 12]
 
 These terms aren't zero, but are extremely small.
