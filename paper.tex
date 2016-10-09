@@ -437,11 +437,23 @@ resources necessary to perform multiple high fidelity 3-D simulations.
 
 Turbine operation in all cases was simulated for 10 seconds, or approximately
 six rotor revolutions, to allow the revolution-averaged performance coefficient
-to converge to within $\sim 1$ percentage point. Computations for the 3-D cases
-were run on 192 processes (24 nodes $\times$ 8 cores each on Sandia National
-Labs' Red Mesa high performance computing cluster) and took on the order of
-1,000 CPU hours per second of simulated time. The 2-D simulations were run on a
-single processor and took on the order of one CPU hour per simulated second.
+to converge to within $\sim 1$ percentage point; cf.
+Figure~\ref{fig:cp-convergence}. Computations for the 3-D cases were run on 192
+processes (24 nodes $\times$ 8 cores each on Sandia National Labs' Red Mesa high
+performance computing cluster) and took on the order of 1,000 CPU hours per
+second of simulated time. The 2-D simulations were run on a single processor and
+took on the order of one CPU hour per simulated second.
+
+\begin{figure}
+    \centering
+
+    \includegraphics[width=0.75\textwidth]{cp-time-series}
+
+    \caption{Revolution-averaged power coefficient versus rotor revolution
+    simulated with the 3-D $k$--$\omega$ SST model.}
+
+    \label{fig:cp-convergence}
+\end{figure}
 
 Performance statistics were computed after the first revolution onward and flow
 statistics were calculated over the time interval spanning $5$--$10$ seconds, or
