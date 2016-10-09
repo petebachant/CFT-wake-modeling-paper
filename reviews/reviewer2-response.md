@@ -6,15 +6,22 @@ which have helped us improve the paper.
 >In general more work needs to be performed on
 • Discussion of mesh factors that may affect the simulation results
 
+Specific comments in the PDF have been addressed in the manuscript and in the
+subsection below.
 
 >• Nomenclature, and the lack of definition of many of the variables will cause confusion for many readers
 
+This is a very important point, and we have added many nomenclature definitions
+throughout the text.
 
 >• Improvement of figures with nomenclature, labels, axis etc.
 
 
 >• More explanation of why the various transport properties are investigated and their applicability
 
+These transport properties indicate which terms in the governing equations most
+affect wake evolution and its recovery, which will determine rotor spacing in an
+array. A comment has been added to the manuscript to clarify this point.
 
 >Additionally the title could be better, maybe add a Computational Fluid Dynamics or simulation somewhere?
 
