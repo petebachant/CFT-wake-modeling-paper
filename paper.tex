@@ -413,16 +413,17 @@ Time step dependence was evaluated using the 2-D $N_x=70$ grid, the results from
 which are shown in Figure~\ref{fig:2d-br-verification}. It was seen that the
 Spalart--Allmaras model converged well with decreasing time step, leading to a
 final time step of 0.001 s. The results from the SST model show a local minimum
-at $\Delta t = 0.002$ s, with some divergence for smaller time steps. The local
-minimum was chosen as the final time step to run the simulations. Note that the
-SST model's convergence behavior may be due to its specific implementation in
-OpenFOAM, and not indicative of the nature of the model equations. Verification
-studies for CFTs with this level of detail in the literature are not common,
-though the final time step is comparable to others \cite{Balduzzi2016}. Note
-that while in general there may be a coupling between necessary spatial and
-temporal resolution, these values were arrived at iteratively, i.e., the spatial
-dependence was varied with the chosen time step, and vice versa, such that there
-was one independent variable for each parameter sweep.
+at $\Delta t = 0.002$ s, with some divergence for smaller time steps, the reason
+for which is unknown. The local minimum was chosen as the final time step to run
+the simulations. Note that the SST model's convergence behavior may be due to
+its specific implementation in OpenFOAM, and not indicative of the nature of the
+model equations. Verification studies for CFTs with this level of detail in the
+literature are not common, though the final time step is comparable to others
+\cite{Balduzzi2016}. Note that while in general there may be a coupling between
+necessary spatial and temporal resolution, these values were arrived at
+iteratively, i.e., the spatial dependence was varied with the chosen time step,
+and vice versa, such that there was one independent variable for each parameter
+sweep.
 
 Sensitivity to spatial resolution and time step was not assessed for the 3-D
 case, as the computational cost would have been prohibitive. However, the mesh
