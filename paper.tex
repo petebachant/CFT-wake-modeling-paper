@@ -318,14 +318,15 @@ experiments. The 2-D mesh overview is shown in Figure~\ref{fig:2d-br-mesh} and
 the blade mesh detail is shown in Figure~\ref{fig:blade-mesh}.
 
 Meshes were generated using OpenFOAM's blockMesh and snappyHexMesh utilities.
-Mesh  consists of a background hexahedral mesh, which is refined in all
+The mesh consisted of a background hexahedral mesh, which was refined in all
 three directions by a factor of 2 in a rectangular region containing the turbine
 and near-wake (0.9 m upstream, 1.3 m downstream, $\pm 0.9$ m cross-stream, and
-$\pm 0.8$ m vertically). Cells adjacent to the turbine shaft and struts are
-refined by a factor of 4, while cells adjacent to the blades are refined by a
-factor of 6. To capture the boundary layer, 20 layers were added next to the
-blades with an expansion ratio of 1.2. Overall mesh refinement is controlled by
-a single parameter---the number of cells in the streamwise direction, $N_x$.
+$\pm 0.8$ m vertically). Cells adjacent to the turbine shaft and struts were
+refined by a factor of 4, while cells adjacent to the blades were refined by a
+factor of 6. To capture the boundary layer, i.e., where flow physics most affect
+rotor torque---20 layers were added next to the blades with an expansion ratio
+of 1.2. Overall mesh refinement is controlled by a single parameter---the number
+of cells in the streamwise direction, $N_x$.
 
 \begin{figure}
     \centering
@@ -486,13 +487,18 @@ support strut drag.
 The 3-D simulations matched the experimental measurements more closely. The
 Spalart--Allmaras model's mean power coefficient was 0.24 while the SST's was
 0.33, which represent a 6\% under- and 30\% overprediction, respectively,
-compared with the experiments. Some of the apparent overprediction of rotor drag
-coefficient could also be an effect of the experimental procedure, where the
-``tare drag'' from the turbine mounting structure was measured without a turbine
-installed, then subtracted in post-processing. With the turbine installed, flow
-past the mounting frame will be higher due to blockage, meaning the tare drag
-would be underestimated, and the CFD results for $C_D$ should be slightly higher
-than the experimental measurements.
+compared with the experiments. Strut drag modeling discrepancies due to the
+struts' lower mesh resolution compared to the blades, along with the use of wall
+functions, could have played a minor role in degrading overall performance
+predictions, and should be investigated further.
+
+Some of the apparent overprediction of rotor drag coefficient could also be an
+effect of the experimental procedure, where the ``tare drag'' from the turbine
+mounting structure was measured without a turbine installed, then subtracted in
+post-processing. With the turbine installed, flow past the mounting frame will
+be higher due to blockage, meaning the tare drag would be underestimated, and
+the CFD results for $C_D$ should be slightly higher than the experimental
+measurements.
 
 \begin{figure}
     \centering
