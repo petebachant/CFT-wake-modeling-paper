@@ -241,7 +241,8 @@ The turbine's CAD geometry was prepared or ``cleaned'' for CFD by removing
 details determined to be unnecessary, e.g., screw heads and axial shaft grooves,
 which would complicate the meshing process and contribute very little to the
 overall loading or flow modulation. A drawing of the physically and numerically
-modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
+modeled geometries is presented in Figure~\ref{fig:cfd-cad}, and geometric
+parameters are listed in Table~\ref{tab:turb-geom}.
 
 \begin{figure}
     \centering
@@ -264,6 +265,25 @@ modeled geometries is presented in Figure~\ref{fig:cfd-cad}.
 
     \label{fig:cfd-cad}
 \end{figure}
+
+\begin{table}
+    \centering
+    \begin{tabular}{r|l}
+        Parameter & Value \\
+        \hline
+        Diameter $D$ & 1.0 m \\
+        Height or blade span $H$ & 1.0 m \\
+        Blade chord length $c$ & 0.14 m \\
+        Blade profile & NACA 0020 \\
+        Blade mounting point & $c/2$ and $H/2$ \\
+        Strut chord length & 0.14 m \\
+        Strut profile & NACA 0020
+    \end{tabular}
+
+    \caption{Geometric parameters for the UNH-RVAT rotor modeled in this study.}
+
+    \label{tab:turb-geom}
+\end{table}
 
 To close the RANS equations, two different turbulence models were used: Menter's
 $k$--$\omega$ SST \cite{Menter1994} and the Spalart--Allmaras (SA) one equation
