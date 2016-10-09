@@ -18,6 +18,10 @@ which have helped us improve the paper.
 
 >Additionally the title could be better, maybe add a Computational Fluid Dynamics or simulation somewhere?
 
+Maybe change "modeling" to "simulating"? It is somewhat implied that "RANS"
+modeling means it is a computational study, but we understand the reviewer's
+point.
+
 
 ## Responses to PDF comments
 
