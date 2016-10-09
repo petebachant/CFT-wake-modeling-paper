@@ -91,3 +91,9 @@ We did not perform a mesh dependence study for domain length---only for the
 resolution. Since this is a RANS model, the large scale turbulent structures do
 not advect downstream like they would in an LES model, as the 3-D vorticity
 contours show.
+
+>Or the mesh resolution at 1 diameter downstream [on the difference between the
+3-D SA and SST models' mean velocity]?
+
+This shouldn't be a mesh resolution effect between models since the same mesh
+was used for each.
