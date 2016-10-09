@@ -5,8 +5,11 @@
 
 CURRENT=$(git describe --always --dirty)
 rev=$1
-git show $rev:paper.tex > archive/paper-$CURRENT-$rev.tex
-latexdiff --exclude-textcmd="section,subsection,subsubsection" --math-markup=off archive/paper-$CURRENT-$rev.tex paper.tex > paper-$CURRENT-$rev-diff.tex
-latexmk paper-$CURRENT-$rev-diff.tex -pdf -f
-mv paper-$CURRENT-$rev-diff.pdf archive
-rm paper-$CURRENT-$rev*
+if [ "$rev" = "" ]; then
+    rev=$(git tag | tail -n1)
+fi
+git show $rev:paper.tex > archive/paper-$rev-$CURRENT.tex
+latexdiff --exclude-textcmd="section,subsection,subsubsection" --math-markup=off archive/paper-$rev-$CURRENT.tex paper.tex > paper-$rev-$CURRENT-diff.tex
+latexmk paper-$rev-$CURRENT-diff.tex -pdf -f
+mv paper-$rev-$CURRENT-diff.pdf archive
+rm paper-$rev-$CURRENT*

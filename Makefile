@@ -50,6 +50,12 @@ reviews: reviews/reviewer2-response.md reviews/reviewer3-response.md
 	pandoc reviews/reviewer3-response.md -o reviews/reviewer3-response.pdf -H reviews/quote-config.tex
 
 
+## diff:            Make PDF diff between this and last tagged version
+.PHONY: diff
+diff:
+	bash scripts/diff.sh
+
+
 .PHONY: help
 help: Makefile
 	@sed -n "s/^##//p" $<
