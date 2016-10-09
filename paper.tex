@@ -417,13 +417,13 @@ at $\Delta t = 0.002$ s, with some divergence for smaller time steps, the reason
 for which is unknown. The local minimum was chosen as the final time step to run
 the simulations. Note that the SST model's convergence behavior may be due to
 its specific implementation in OpenFOAM, and not indicative of the nature of the
-model equations. Verification studies for CFTs with this level of detail in the
-literature are not common, though the final time step is comparable to others
-\cite{Balduzzi2016}. Note that while in general there may be a coupling between
+model equations. Note that while in general there may be a coupling between
 necessary spatial and temporal resolution, these values were arrived at
 iteratively, i.e., the spatial dependence was varied with the chosen time step,
 and vice versa, such that there was one independent variable for each parameter
-sweep.
+sweep. Reassuringly, the chosen time step and average $y^+$ adjacent to the
+blades are comparable to others reported in the literature
+\cite{Maitre2013,Balduzzi2016}.
 
 Sensitivity to spatial resolution and time step was not assessed for the 3-D
 case, as the computational cost would have been prohibitive. However, the mesh
