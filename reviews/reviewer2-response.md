@@ -16,6 +16,7 @@ throughout the text.
 
 >• Improvement of figures with nomenclature, labels, axis etc.
 
+We have modified the figures to be more descriptive, as requested.
 
 >• More explanation of why the various transport properties are investigated and their applicability
 
