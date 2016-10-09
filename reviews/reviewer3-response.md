@@ -1,6 +1,8 @@
 # Response to reviewer 3
 
-We appreciate the comments given here, and addressing them has improved the manuscript significantly.
+Firstly, we'd like to thank the reviewer for his or her thoughtful review. We
+appreciate the comments given here, and addressing them has improved the
+manuscript significantly.
 
 >1. For convergence study, Fig 5 gives the results for different choice of time step. however, for SST model, the Cp do not convergent with the time step. On the other hand, the choice of time step is always coupled with the choice of space step. Generally speaking, the time step cannot be too small for a certain space discretion condition. Therefore, It is suggested that the author provide this relationship between space and time discretion.
 
