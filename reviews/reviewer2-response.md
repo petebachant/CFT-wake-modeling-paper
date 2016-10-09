@@ -79,3 +79,15 @@ difficult to interpret.
 
 It virtually is--6.03 revolutions technically, but the additional 0.03
 revolutions should not have any appreciable effect on the statistics.
+
+>Is this relevant to the paper [the performance curves]?
+
+This is a valid point. If the reviewer thinks the paper would read okay without
+this figure, we would be willing to remove it.
+
+>Why so long [the computational domain]?
+
+We did not perform a mesh dependence study for domain length---only for the
+resolution. Since this is a RANS model, the large scale turbulent structures do
+not advect downstream like they would in an LES model, as the 3-D vorticity
+contours show.
