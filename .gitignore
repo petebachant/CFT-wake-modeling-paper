@@ -108,7 +108,7 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
-figures
+figures/SolidWorks
 paperNotes.bib
 paper.pdf
 
